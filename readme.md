@@ -1,2 +1,4 @@
 **REXIM CORE**
-Master branch
+<<<<<<< HEAD
+Master branch Webanalytics branch
+>>>>>>> webanalytics
