@@ -1,0 +1,45 @@
+<div>
+	<table class = "table table-bordered table-striped table-hover">
+		<thead>
+              <tr>
+                <th >Error Id</th>
+                <th >Customer Id</th>
+                <th >Client Id</th>
+                <th>Error Type</th>
+                <th>Action</th>
+              </tr>
+        </thead>
+        <tbody ng-repeat="data in pymtErrorData">
+        	<tr>
+        		<td >{{$index+1}}</td>
+        		<td >{{data.customerId}}</td>
+        		<td >{{data.clientId}}</td>
+        		<td style = "text-transform: uppercase" >{{data.errorType}}</td>
+        		<td > 
+        			<div class="btn-group">
+					  <button class="btn btn-primary" ng-click="chat(data.clientId)">
+					  	Chat</button>
+					  <button class="btn btn-success" ng-click="showModal(data.clientId)">Promo Code</button>					  
+					</div>
+        		</td>
+        	</tr>
+        </tbody>
+	</table>
+ 
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Enter Offer Code</h3>
+  </div>
+  <div class="modal-body">    
+    <input type="text" ng-model = "offer.offerCode" placeholder="Enter Offer Code">
+    <input type="hidden" ng-model = "modalClientId" placeholder="Enter Offer Code">
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" 
+    ng-click="offerCode(modalClientId,offer.offerCode)">Submit</button>
+  </div>
+</div>
+</div>
