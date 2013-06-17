@@ -1,16 +1,11 @@
 exports.configClientUser = function(socket){
-
+console.log("<--Inside configClientUser -->");
 var customer = {};  
 	
-//IO.sockets.on('connection', function (socket) { // on connection  
-
-	var client = IO.sockets.clients();
-	/*console.log("address  :"); 	console.log(socket.handshake);
-	console.log("client  :");  console.log(client);*/
-	console.log("socket id  :" + socket.id);
+	var client = IO.sockets.clients();	
 
   socket.on('setCust',function(custId){             // setting cutomer id
-    console.log("custId : " + custId.custKey); 
+    console.log("<--Inside socket(setCust) -->");
                                             
        var customerId = custId.custKey;             // add client id to custmId
        var clientId = socket.id;
@@ -18,7 +13,7 @@ var customer = {};
        var adminId =  customerId + "_Admin";   
        	
        	if( OWA_CUSTOMERS.length == 0){             // First ever occurance 
-       		  	console.log("---first time ---");
+       		  console.log("---first time ---");
 		       	customer.cust_Id = customerId;
             customer.admin_Id = adminId;
 		       	customer.client_Id = [clientId];   

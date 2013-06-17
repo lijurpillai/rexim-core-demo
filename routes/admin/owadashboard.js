@@ -1,8 +1,9 @@
 exports.configAdminUser = function(socket){
-	console.log("asdaksdjf asd");
+	console.log("<-- Inside configAdminUser -->");
 	var admins = {};	
 
 			socket.on('setAdmin',function(data){   // setting admin user
+				console.log("<-- Inside configAdminUser > socket(setAdmin) -->");
 			    console.log("--Admin ID----" + data.adminKey); 
 			    var adminId = data.adminKey; 
 			    var clientId = socket.id;     // add admin id to custmId		        
