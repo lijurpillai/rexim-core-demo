@@ -1,110 +1,312 @@
 <!DOCTYPE html>
-
-<html ng-app="owaApp">
+<html lang="en" ng-app="MyModule">
 <head>
-    <meta charset="utf-8">
-    <title>Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	
+	<!-- start: Meta -->
+	<meta charset="utf-8">
+	<title>User Activity Dashboard</title>
+	<meta name="description" content="User Activity Dashboard.">
+	<meta name="author" content="SCJ">
+	<meta name="keyword" content="ACME, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	<!-- end: Meta -->
+	
+	<!-- start: Mobile Specific -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- end: Mobile Specific -->
+	
+	<!-- start: CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<link href="css/style.min.css" rel="stylesheet">
+	<link href="css/style-responsive.min.css" rel="stylesheet">
+	<link href="css/retina.css" rel="stylesheet">
+	<!-- end: CSS -->
 
-    <!-- Le styles -->
-    <link href="stylesheets/bootstrap.css" rel="stylesheet">
-    <style>
-        body {
-            padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-        }
-    </style>
-    <link href="stylesheets/bootstrap-responsive.css" rel="stylesheet">    
+	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<link id="ie-style" href="css/ie.css" rel="stylesheet">
+	<![endif]-->
+	
+	<!--[if IE 9]>
+		<link id="ie9style" href="css/ie9.css" rel="stylesheet">
+	<![endif]-->
+	
+	<!-- start: Favicon and Touch Icons -->
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
+	<link rel="shortcut icon" href="ico/favicon.png">
+	<!-- end: Favicon and Touch Icons -->
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->   
-
+	<!-- start: JavaScript-->
+	<script src="js/lib/lib/jquery-1.9.1.min.js"></script>
+	<script src="js/lib/lib/jquery-migrate-1.0.0.min.js"></script>	
+	<script src="js/lib/lib/jquery-ui-1.10.0.custom.min.js"></script>	
+	<script src="js/lib/lib/jquery.ui.touch-punch.js"></script>	
+	
+	<script src="js/lib/angularjs_1.1.3/angular.js"></script>
+	<script src="js/app/modules.js"></script>
+	<script src="js/app/controllers.js"></script>
+	<script src="js/app/directives/progressbar.js"></script>
+	<script src="js/app/directives/verticalchart.js"></script>
+	<script src="js/app/directives/verticalthinchart.js"></script>
+	<script src="js/app/directives/sparklinechart.js"></script>
+	<script src="js/app/directives/facebookchart.js"></script>
+	<script src="js/app/directives/twitterchart.js"></script>
+	<script src="js/app/directives/statuschart.js"></script>
+	<script src="js/app/directives/realtimefirechart.js"></script>
+	<script src="js/app/directives/realtimeserverstatuschart.js"></script>
+	<script src="js/app/directives/circlechart.js"></script>
+	
+	<script src="js/app/dataprovider.js"></script>
+	
+	<script src="js/lib/lib/modernizr.js"></script>	
+	<script src="js/lib/lib/bootstrap.min.js"></script>	
+	<script src="js/lib/lib/jquery.cookie.js"></script>
+	<script src='js/lib/lib/fullcalendar.min.js'></script>
+	<script src='js/lib/lib/jquery.dataTables.min.js'></script>
+	<script src="js/lib/lib/excanvas.js"></script>
+	<script src="js/lib/lib/jquery.flot.js"></script>
+	<script src="js/lib/lib/jquery.flot.pie.js"></script>
+	<script src="js/lib/lib/jquery.flot.stack.js"></script>
+	<script src="js/lib/lib/jquery.flot.resize.min.js"></script>
+	<script src="js/lib/lib/gauge.min.js"></script>
+	<script src="js/lib/lib/jquery.chosen.min.js"></script>
+	<script src="js/lib/lib/jquery.uniform.min.js"></script>
+	<script src="js/lib/lib/jquery.cleditor.min.js"></script>
+	<script src="js/lib/lib/jquery.noty.js"></script>
+	<script src="js/lib/lib/jquery.elfinder.min.js"></script>
+	<script src="js/lib/lib/jquery.raty.min.js"></script>
+	<script src="js/lib/lib/jquery.iphone.toggle.js"></script>
+	<script src="js/lib/lib/jquery.uploadify-3.1.min.js"></script>
+	<script src="js/lib/lib/jquery.gritter.min.js"></script>
+	<script src="js/lib/lib/jquery.imagesloaded.js"></script>
+	<script src="js/lib/lib/jquery.masonry.min.js"></script>
+	<script src="js/lib/lib/jquery.knob.modified.js"></script>
+	<script src="js/lib/lib/jquery.sparkline.min.js"></script>
+	<script src="js/lib/lib/counter.js"></script>
+	<script src="js/lib/lib/raphael.2.1.0.min.js"></script>
+	<script src="js/lib/lib/justgage.1.0.1.min.js"></script>
+	<script src="js/lib/lib/retina.js"></script>
+	<script src="js/lib/lib/core.min.js"></script>
+	<script src="js/lib/lib/charts.js"></script>
+	<script src="js/lib/lib/custom.js"></script>
+	<!-- end: JavaScript-->
+	
 </head>
-<body>
-    <div class="header">
-    <div class="navbar navbar-fixed-top" >
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a class="brand" href="#">Real Time Analytics</a>
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row-fluid" >            
-                <div class="span2">
-                    <div class = "row-fluid">
-                        <div class="span6">
-                            <img src="http://placehold.it/160x120" alt="" class="span12 thumbnail">
-                        </div>
-                        <div class="span6">
-                            <h6>Username Liju {{1+2}}</h6>
-                            <a href="#">Profile</a>|<a href="#">Logout</a>
-                        </div>
-                    </div>
-                    <div class = "well nav-collapse sidebar-nav">
-                        <ul class = "nav nav-tabs nav-stacked main-menu">                            
-                            <li class="nav-header hidden-tablet">Main</li>
-                            <li><a class="ajax-link" href="#/dashboard">
-                                    <i class="icon-home"></i>
-                                    <span class="hidden-tablet"> Dashboard</span>
-                                </a>
-                            </li>
-                            <li><a class="ajax-link" href="#/charts">
-                                    <i class="icon-list-alt"></i>
-                                    <span class="hidden-tablet"> Charts</span>
-                                </a>
-                            </li>
-                            <li><a class="ajax-link" href="chart.html">
-                                    <i class="icon-check"></i>
-                                    <span class="hidden-tablet"> Add to cart</span>
-                                </a>
-                            </li>
-                            <li><a class="ajax-link" href="chart.html">
-                                    <i class="icon-exclamation-sign"></i>
-                                    <span class="hidden-tablet"> Support</span>
-                                </a>
-                            </li>
-                            <li><a class="ajax-link" href="#/error">
-                                    <i class=" icon-warning-sign"></i>
-                                    <span class="hidden-tablet"> Error</span>
-                                </a>
-                            </li>
-                            <li><a class="ajax-link" href="chart.html">
-                                    <i class="icon-info-sign"></i>
-                                    <span class="hidden-tablet"> About</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                </div>
-                <div class="span10">
-                    <div class = "row-fluid">
-                        <h6 style = "text-align:right">Usage Chart</h6>
-                    </div>                    
-                        <div id = "chart">
-                            <!--div id = "container" class = "highcharts-container"-->
-                            <div ng-view></div>
-                            </div>
-                        </div>
-                </div>  
-        </div>
-    </div>
-</body>
 
-  <script src="javascripts/lib/angular/angular.js"></script>
-  <script src="javascripts/lib/jQuery/jquery-1.9.1.min.js"></script>
-  <script src="javascripts/lib/socket/liju_socketIO.js"></script>
-  <script src="http://localhost:3000/socket.io/socket.io.js"></script>  
-  <script src="javascripts/lib/highcharts/highcharts.js"></script>
-  <script src="javascripts/app/app.js"></script>
-  <script src="javascripts/app/controllers.js"></script>
-  <script src="javascripts/app/highchart_directives.js"></script>
-  <script src="javascripts/app/services.js"></script>
-  <script src="javascripts/lib/bootstrap/bootstrap.js"></script>
-  
+<body>
+	<!-- start: Header -->
+	<div class="navbar" id="headerMenuBar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="#/index"><span>Acme, Inc</span></a>
+								
+				<!-- start: Header Menu -->
+				<div class="nav-no-collapse header-nav" ng-init="headerMenu = 'views/headers/header_menu.html'" ng-include src="headerMenu"></div>
+				<!-- end: Header Menu -->
+			</div>
+		</div>
+	</div>
+	<!-- end: Header -->
+	<!--start: fluid-container-->
+	<div class="container-fluid">
+	<!-- start: fluid-row-->
+	<div class="row-fluid">			
+		<!--  start: main menu -->
+		<div id="sidebar-left" class="span1" ng-init="mainMenu = 'views/headers/main_menu.html'" ng-include src="mainMenu" ng-controller="mainMenuCntrl"></div>
+		<!--  start: main menu -->
+		<a id="main-menu-toggle" class="hidden-phone open"><i class="fa-icon-reorder"></i></a>
+		<!--  start: no script -->
+		<div ng-init="noScript = 'views/headers/no_script.html'" ng-include src="noScript"></div>
+		<!--  start: no script -->
+		
+		<div ng-view></div>
+		
+		<!-- start: Widgets Area -->
+		<div id="widgets-area" class="span2 hidden-tablet hidden-phone">
+			
+			<ul class="nav tab-menu nav-tabs" id="myTab">
+				<li class="active"><a href="#charts"><i class="fa-icon-bar-chart"></i></a></li>
+				<li><a href="#users"><i class="fa-icon-group"></i></a></li>
+				<li><a href="#messages"><i class="fa-icon-envelope"></i></a></li>
+				<li><a id="close-widgets-area" href="#"><i class="fa-icon-signin"></i></a></li>
+			</ul>
+			 
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane active" id="charts">
+					<div class="bar-stat">
+						<span class="title">Account balance</span>
+						<span class="value">$19 999,99</span>
+						<span class="chart green">7,3,2,6,6,3,9,0,1,4</span>
+					</div>
+					<hr>
+					<div class="bar-stat">
+						<span class="title">Clients</span>
+						<span class="value">1278</span>
+						<span class="chart yellow">8,2,5,4,7,4,7,2,5,9</span>
+					</div>
+					<hr>
+					<div class="bar-stat">
+						<span class="title">Orders</span>
+						<span class="value">5876</span>
+						<span class="chart blue">2,4,6,8,3,5,9,3,2,2</span>
+					</div>
+					<hr>
+					<div class="bar-stat">
+						<span class="title">Messages</span>
+						<span class="value">673</span>
+						<span class="chart red">0,3,3,8,3,3,2,7,8,4</span>
+					</div>
+					<hr>
+					<div id="cpu-usage"></div>
+					<ul class="progress-bars">
+						<li>
+							<span class="title">Free Memory</span>
+							<span class="percent"></span>
+							<div class="taskProgress progressSlim progressGreen">80</div>
+						</li>
+						<li>
+							<span class="title">Free HDD Drive</span>
+							<span class="percent"></span>
+							<div class="taskProgress progressSlim progressYellow">20</div>
+						</li>
+						<li>
+							<span class="title">Free SSD Drive</span>
+							<span class="percent"></span>
+							<div class="taskProgress progressSlim progressBlue">57</div>
+						</li>
+						<li>
+							<span class="title">Transfer</span>
+							<span class="percent"></span>
+							<div class="taskProgress progressSlim progressRed">45</div>
+						</li>	
+					</ul>	
+				</div>
+				<div class="tab-pane" id="users">
+					<ul class="users-list">
+		            	<li>
+		                    <a href="#">
+								<span class="status active"></span>
+								<span class="avatar"><img class="img-circle" src="img/avatar.jpg" alt="Avatar"></span>
+								<span class="name">ukasz Holeczek</span>
+		                    </a>
+		                </li>
+		                <li>
+		                    <a href="#">
+								<span class="status busy"></span>
+								<span class="avatar"><img class="img-circle" src="img/avatar2.jpg" alt="Avatar"></span>
+								<span class="name">Megan Abott</span>
+		                    </a>
+		                </li>
+		                <li>
+		                    <a href="#">
+								<span class="status disable"></span>
+								<span class="avatar"><img class="img-circle" src="img/avatar3.jpg" alt="Avatar"></span>
+								<span class="name">Kate Ross</span>
+		                    </a>
+		                </li>
+						<li>
+		                    <a href="#">
+								<span class="status active"></span>
+								<span class="avatar"><img class="img-circle" src="img/avatar4.jpg" alt="Avatar"></span>
+								<span class="name">Julie Blank</span>
+		                    </a>
+		                </li>
+		                <li>
+		                    <a href="#">
+								<span class="status"></span>
+								<span class="avatar"><img class="img-circle" src="img/avatar5.jpg" alt="Avatar"></span>
+								<span class="name">Jane Sanders</span>
+		                    </a>
+		                </li>
+						<li>
+		            		<a href="#">View all users</a>
+						</li>	
+					</ul>
+				</div>
+				<div class="tab-pane" id="messages">
+					<ul class="messages-list">
+		            	<li>
+		                    <a href="#">
+								<div class="avatar"><img class="img-circle" src="img/avatar.jpg" alt="Avatar"></div>
+								<span class="name">ukasz Holeczek</span>
+								<span class="date">25/6/2013</span>
+								<span class="title">Custom Bootstrap design for new client</span>
+		                    </a>
+		                </li>
+		                <li>
+		                    <a href="#">
+								<div class="avatar"><img class="img-circle" src="img/avatar2.jpg" alt="Avatar"></div>
+								<span class="name">Megan Abott</span>
+								<span class="date">25/6/2013</span>
+								<span class="title">Custom Bootstrap design for new client</span>
+		                    </a>
+		                </li>
+		                <li>
+		                    <a href="#">
+								<div class="avatar"><img class="img-circle" src="img/avatar3.jpg" alt="Avatar"></div>
+								<span class="name">Kate Ross</span>
+								<span class="date">25/6/2013</span>
+								<span class="title">Custom Bootstrap design for new client</span>
+		                    </a>
+		                </li>
+						<li>
+		                    <a href="#">
+								<div class="avatar"><img class="img-circle" src="img/avatar4.jpg" alt="Avatar"></div>
+								<span class="name">Julie Blank</span>
+								<span class="date">25/6/2013</span>
+								<span class="title">Custom Bootstrap design for new client</span>
+		                    </a>
+		                </li>
+		                <li>
+		                    <a href="#">
+								<div class="avatar"><img class="img-circle" src="img/avatar5.jpg" alt="Avatar"></div>
+								<span class="name">Jane Sanders</span>
+								<span class="date">25/6/2013</span>
+								<span class="title">Custom Bootstrap design for new client</span>
+		                    </a>
+		                </li>
+						<li>
+		            		<a href="#/messages">View all messages</a>
+						</li>	
+					</ul>
+		
+				</div>
+			</div>
+		</div>
+		<!-- end: Widgets Area -->
+		<a id="widgets-area-button" class="hidden-tablet hidden-phone open"><i class="fa-icon-reorder"></i></a>				
+	</div>
+<!-- end: fluid-row-->
+		
+<div class="modal hide fade" id="myModal">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">×</button>
+		<h3>Settings</h3>
+	</div>
+	<div class="modal-body">
+		<p>Here settings can be configured...</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">Close</a>
+		<a href="#" class="btn btn-primary">Save changes</a>
+	</div>
+</div>
+
+<div class="clearfix"></div>
+	
+	<!--  start: footer -->
+	<div ng-init="footer = 'views/headers/footer.html'" ng-include src="footer"></div>
+	<!--  end: footer -->
+	</div>
+	<!--end: fluid-container-->
+</body>
 </html>
