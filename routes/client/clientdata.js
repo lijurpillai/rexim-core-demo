@@ -1,6 +1,7 @@
 exports.processClientData = function(socket){	
-	console.log("i am getting initialized......");
-	 var sendAdminData = require('../admin/admindata.js'); 	 
+	console.log("<--Inside processClientData-->");
+	 var sendAdminData = require('../admin/admindata.js'); 
+	 var sendAnalyticsData = require('../analytics/analyticsData.js');	 
 	 var customerId = "owaCustomer1";
 	 var errorType = "payment";	 
 
@@ -10,19 +11,15 @@ exports.processClientData = function(socket){
 		 this.clientId = clientId;
 		 this.errorType = errorType;
 		}
-	  
-	 socket.on('owa',function(data){   // getting analytics data
-	  	    console.log("Visited URL :" + data.analytics.href);    
-	  	  });   
-	  
-	    socket.on('pageData',function(data){	  
-	        var url = data.url;
-	        var ip = socket.handshake.address.address;
-	        console.log("url ---- >" + url);
-	        console.log("ip --- > "+ ip);
-  			sendAdminData.processAdminData(socket);
-	  
-	      });  	
+
+	    socket.on('analyticsData',function(data){		                    
+  			sendAnalyticsData.processAnalyticsData(socket,data);	  
+	      });
+
+	    socket.on('disconnect', function (){
+
+	    });
+
 
 	    socket.on('offerView',function(offerData){
 	    	OFFER_COUNT++
