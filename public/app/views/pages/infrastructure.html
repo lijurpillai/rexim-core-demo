@@ -1,0 +1,69 @@
+<!-- start: Content -->
+<div id="content" class="span11">
+	<div class="row-fluid">
+		<div class="tempStats">
+			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
+				<div class="tempStat">78</div>
+				<span>CPU Temperature</span>
+			</div>
+			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
+				<div class="tempStat">78</div>
+				<span>GPU Temperature</span>
+			</div>
+			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
+				<div class="tempStat">78</div>
+				<span>HDD Temperature</span>
+			</div>
+			<div class="tempStatBox span2 noMargin" onTablet="span4" onDesktop="span2">
+				<div class="tempStat">78</div>
+				<span>SSD Temperature</span>
+			</div>
+			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
+				<div class="tempStat">78</div>
+				<span>Memory Bank Temperature</span>
+			</div>
+			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
+				<div class="tempStat">78</div>
+				<span>Memory Controller Temperature</span>
+			</div>
+			<div class="clearfix"></div>
+		</div>	
+		<div class="row-fluid hideInIE8">
+			<div class="span12">
+				<div class="circleStats">
+					<div class="span2" onTablet="span4" onDesktop="span2" ng-repeat="active in activeUsersCircleChart">
+                    	<div id="activeUser{{$index}}" class="circleStatsItemBox" circlechart="active">
+							<div class="header" ng-bind="active.label"></div>
+							<div class="circleStat">
+                        		<input type="text" class="whiteCircle" value="{{active.users}}"/>
+							</div>
+							<div class="footer" ng-bind="active.label"></div>
+                    	</div>
+					</div>
+                </div>
+			</div>
+		</div>		
+	</div>
+	<hr>
+	<div class="row-fluid">
+		<div class="widget span12">
+			<h2><span class="glyphicons fire"><i></i></span> Active Users</h2>
+			<hr>
+			<div class="content">
+				 <div id="activeUsers" style="height:300px;" verticalthinchart="activeUserData"></div>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row-fluid">
+		
+		<div class="widget span12">
+			<h2><span class="glyphicons fire"><i></i></span> Server Load</h2>
+			<hr>
+			<div class="content">
+				 <div id="serverLoad" style="height:300px;" realtimeserverstatuschart="serverData"></div>
+			</div>
+		</div>
+	</div>	
+</div>
+<!-- end: Content -->
