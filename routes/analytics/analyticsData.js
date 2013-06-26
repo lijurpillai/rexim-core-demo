@@ -10,6 +10,7 @@ exports.processAnalyticsData = function(socket){
   			  data.pageData.activeUsers = activeUsers;
   			  data.clientId = clientId;
   			  console.log(data);
+  			  IO.sockets.emit('analyticsData', { analyticsData: data });
 	      });
 
 	/*console.log("Analytics data loaded........"+ url);

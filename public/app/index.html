@@ -59,8 +59,18 @@
 	<script src="js/app/directives/realtimefirechart.js"></script>
 	<script src="js/app/directives/realtimeserverstatuschart.js"></script>
 	<script src="js/app/directives/circlechart.js"></script>
+	<script src="js/app/directives/barchartcolorsmall.js"></script>
+	<script src="js/app/directives/usernamedisplay.js"></script>
 	
-	<script src="js/app/dataprovider.js"></script>
+	<script src="js/app/services/userlogin.js"></script>
+	<script src="js/app/services/socketService.js"></script>
+	
+	<script src="js/app/dataproviders/dataprovider.js"></script>
+	<!--Socket libs-->
+	<script src="js/lib/socket/liju_socketIO.js"></script>
+  	<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+  	<!--Socket libs ends-->
+
 	
 	<script src="js/lib/lib/modernizr.js"></script>	
 	<script src="js/lib/lib/bootstrap.min.js"></script>	
@@ -141,7 +151,7 @@
 			</ul>
 			 
 			<div id="myTabContent" class="tab-content">
-				<div class="tab-pane active" id="charts">
+				<div class="tab-pane active" id="charts" barchartcolorsmall>
 					<div class="bar-stat">
 						<span class="title">Account balance</span>
 						<span class="value">$19 999,99</span>

@@ -28,8 +28,25 @@ function mainMenuCntrl($log,$scope,$location){
 	};
 }
 
-function dashboardCntrl($log,$scope,$timeout){
+function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
 	$log.info("In dashboardCntrl");
+	
+	socket.on('analyticsData',function(data){
+		$log.info("socket");
+		$log.info(data);
+	})
+	
+	
+	if(!User.isValidUser()){
+		User.redirectToLogin();
+	}
+	
+	if(!angular.equals("/login",$location.absUrl().split('#')[1])){
+		angular.element('#headerMenuBar').css({display: 'block'});
+		angular.element('#main-menu-toggle').css({display: 'block'});
+		angular.element('#widgets-area-button').css({display: 'block'});
+		angular.element('#sidebar-left').css({display: 'block'});
+	}
 		
 	$scope.statusChartInputs = generateChartData();
 	
@@ -75,8 +92,11 @@ function dashboardCntrl($log,$scope,$timeout){
 	/**End: Generate random data for statusChartInputs**/
 }
 
-function infrastructureCntrl($log,$scope,$timeout){
+function infrastructureCntrl($log,$scope,$timeout,User){
 	$log.info("In infrastructureCntrl");
+	if(!User.isValidUser()){
+		User.redirectToLogin();
+	}
 	
 	$scope.activeUserData = {"users":150,"data":getRandomData(150)};
 	$scope.serverData = {"users":200,"data":getRandomData(200)};
@@ -111,18 +131,31 @@ function messageCntrl($log,$scope,$timeout){
 	$log.info("In messageCntrl");
 }
 
-function loginCntrl($log,$scope,$timeout,$location){
-	$log.info("In loginCntrl");	
+function loginCntrl($log,$scope,$timeout,$location,$http,$rootScope){
+	$log.info("In loginCntrl");
+	if(sessionStorage){
+		sessionStorage.clear('user');
+	}
 	if(angular.equals("/login",$location.absUrl().split('#')[1])){
-		$log.info("Clicked Login");
 		angular.element('#headerMenuBar').css({display: 'none'});
 		angular.element('#main-menu-toggle').css({display: 'none'});
 		angular.element('#widgets-area-button').css({display: 'none'});
 		angular.element('#sidebar-left').css({display: 'none'});
-	}else{
-		angular.element('#headerMenuBar').css({display: 'block'});
-		angular.element('#main-menu-toggle').css({display: 'block'});
-		angular.element('#widgets-area-button').css({display: 'block'});
-		angular.element('#sidebar-left').css({display: 'block'});
 	}
+
+	$scope.loginAction = function(){
+		$log.info("UserName: "+$scope.username);
+		$log.info("UserPassword: "+$scope.userpassword);
+		$scope.user;
+		$http.get('js/app/dataproviders/loginDetails.json').success(function(data){
+	        $scope.user = data;
+	        if(angular.equals($scope.user.name,$scope.username) && angular.equals($scope.user.password,$scope.userpassword)){
+	        	sessionStorage.setItem("user",angular.toJson($scope.user));
+				$location.path('/dashboard');
+				if(!$rootScope.$$phase){
+	                $rootScope.$apply();
+	            }
+			}
+	    });		
+	};
 }
