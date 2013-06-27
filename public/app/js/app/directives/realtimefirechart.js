@@ -11,7 +11,9 @@ realtimeFireChart.directive('realtimefirechart',function($log){
 						
 			scope.$watch(attr.realtimefirechart,function realtimeFireChartWatch(value){
 				var realTimeData = scope.$eval(attr.realtimefirechart);
-				if(!angular.equals(undefined,realTimeData) && !angular.equals(undefined,realTimeData.data)){
+				$log.info(realTimeData);
+				if(!angular.equals(undefined,realTimeData) && 
+					!angular.equals(undefined,realTimeData.data)){
 					var data = realTimeData.data;
 					//$log.info(value);
 					if(angular.element("#"+attr.id).length){
