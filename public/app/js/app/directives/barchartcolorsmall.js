@@ -6,7 +6,7 @@ var barchartColorSmallDirective = angular.module("BarChartColorSmall",[]);
 barchartColorSmallDirective.directive('barchartcolorsmall',function($log){
 	return {
 		restrict : 'EA',
-		link : function(scope, element, attr){
+		compile : function(scope, element, attr){
 			//scope.$watch(function barChartColorSmallWatch(scope){
 				if (window.devicePixelRatio > 1) {
 					angular.element(".bar-stat > .chart").each(function(){
