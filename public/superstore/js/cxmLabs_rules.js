@@ -1,26 +1,21 @@
 jQ(function(){ 
-	var value = "";
+	var box = null;
+	jQ(".footer-container").append("<div id ='chatBox'></div>");
+	if(box) {
+                  box.chatbox("option", "boxManager").toggleBox();
+              }
+    else {
+	          box = jQ("#chatBox").chatbox({id:"CSR", 
+	                                        user:{key : "value"},
+	                                        title : "REXIM Chat",
+	                                        messageSent : function(id, user, msg) {
+	                                           
+	                                            jQ("#chatBox").chatbox("option", "boxManager")
+	                                            .addMsg(id, msg);
+	                                        }});
+              }
 
-	/*jQ.getJSON('http://localhost:3000/test/rule.json',function(data){		
-		console.log("in getJSON");
-		value = data.domElement.value;
-		console.log(value);
-	});*/
 
-	/*jQ.ajax({
-    type: 'GET',
-    url: 'http://localhost:3000/test/rule.json',
-    async: false,
-    jsonpCallback: 'jsonCallBack',
-    contentType: "application/json",
-    dataType: 'jsonp',
-    success: function(json) {
-       console.log(json.domElement.value);
-    },
-    error: function(e) {
-       console.log(e.message);
-    }
-});*/
 
 
 	//console.log(jQ('h2[class = "product-name"]').text(0));
