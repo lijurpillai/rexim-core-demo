@@ -80,9 +80,17 @@ server.listen(app.get('port'), function(){
 GLOBAL.IO = require(socketConfig)(server,sessionStore); // get socket "io" connection
 
 IO.sockets.on('connection', function (socket){
-  console.log(socket.handshake.headers);
+
+  console.log("socket connecting ------");
+  IO.sockets.emit('activeUsers', { 'activeUsers':Object.keys(IO.connected).length} ); // active users
   sendAnalyticsData.processAnalyticsData(socket); // send analytics data
+
+  socket.on('disconnect', function () {
+    console.log("Socket Disconecting........." + Object.keys(IO.connected).length);
+    IO.sockets.emit('activeUsers', { 'activeUsers':Object.keys(IO.connected).length} );
+  });
 });
+
 
 
 /*IO.sockets.on('connection', function (socket){

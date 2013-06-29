@@ -31,14 +31,19 @@ function mainMenuCntrl($log,$scope,$location){
 function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
 	$log.info("In dashboardCntrl");
 //	$scope.realTimeChartData;
+	socket.on('activeUsers',function(data){
+		$log.info("active users 1 " + data.activeUsers);
+		$scope.realTimeChartData = generateRealTimeChartData(data.activeUsers);
+		
+	});
+
 
 	socket.on('analyticsData',function(data){
 		$log.info("socket");
 		$log.info(data.analyticsData.activeUsers);
 		$log.info(angular.toJson(data.analyticsData));
-		$scope.realTimeChartData = generateRealTimeChartData(data.analyticsData.activeUsers);
+	});
 
-	})
 	$log.info($scope.data);
 	
 	if(!User.isValidUser()){
@@ -62,10 +67,10 @@ function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
 	
 	
 	/**Start: Generate random data for realTimeChartData**/
-	$scope.updateRealTimeChartData = function(){
+	/*$scope.updateRealTimeChartData = function(){
 		$scope.realTimeChartData = generateRealTimeChartData();
 		$timeout($scope.updateRealTimeChartData,8000);
-	};
+	};*/
 	//$timeout($scope.updateRealTimeChartData,8000);
 	/**End: Generate random data for realTimeChartData**/
 
@@ -102,11 +107,12 @@ function infrastructureCntrl($log,$scope,socket,$timeout,User){
 		User.redirectToLogin();
 	}
 	socket.on('analyticsData',function(data){
-		$log.info("socket");
-		$log.info(data.analyticsData.activeUsers);
-		//$log.info(data.activeUsers);
-		$scope.activeUsersCircleChart = generateActiveUsersCircleChartData(data.analyticsData.activeUsers);
+		// To Do
+	});
 
+socket.on('activeUsers',function(data){
+		$log.info("active users 2 " + data.activeUsers);		
+		$scope.activeUsersCircleChart = generateActiveUsersCircleChartData(data.activeUsers);
 	});
 	
 
