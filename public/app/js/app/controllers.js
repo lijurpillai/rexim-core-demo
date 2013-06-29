@@ -30,12 +30,16 @@ function mainMenuCntrl($log,$scope,$location){
 
 function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
 	$log.info("In dashboardCntrl");
-	
+//	$scope.realTimeChartData;
+
 	socket.on('analyticsData',function(data){
 		$log.info("socket");
-		$log.info(data);
+		$log.info(data.analyticsData.activeUsers);
+		$log.info(angular.toJson(data.analyticsData));
+		$scope.realTimeChartData = generateRealTimeChartData(data.analyticsData.activeUsers);
+
 	})
-	
+	$log.info($scope.data);
 	
 	if(!User.isValidUser()){
 		User.redirectToLogin();
@@ -54,7 +58,7 @@ function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
 	
 	$scope.browserUsingStatus = generateRealTimeBrowserData();
 	
-	$scope.realTimeChartData = generateRealTimeChartData();
+	//$scope.realTimeChartData = generateRealTimeChartData();
 	
 	
 	/**Start: Generate random data for realTimeChartData**/
@@ -62,7 +66,7 @@ function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
 		$scope.realTimeChartData = generateRealTimeChartData();
 		$timeout($scope.updateRealTimeChartData,8000);
 	};
-	$timeout($scope.updateRealTimeChartData,8000);
+	//$timeout($scope.updateRealTimeChartData,8000);
 	/**End: Generate random data for realTimeChartData**/
 
 	/**Start: Generate random data for browserUsingStatus**/
@@ -92,15 +96,23 @@ function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
 	/**End: Generate random data for statusChartInputs**/
 }
 
-function infrastructureCntrl($log,$scope,$timeout,User){
+function infrastructureCntrl($log,$scope,socket,$timeout,User){
 	$log.info("In infrastructureCntrl");
 	if(!User.isValidUser()){
 		User.redirectToLogin();
 	}
+	socket.on('analyticsData',function(data){
+		$log.info("socket");
+		$log.info(data.analyticsData.activeUsers);
+		//$log.info(data.activeUsers);
+		$scope.activeUsersCircleChart = generateActiveUsersCircleChartData(data.analyticsData.activeUsers);
+
+	});
 	
+
 	$scope.activeUserData = {"users":150,"data":getRandomData(150)};
 	$scope.serverData = {"users":200,"data":getRandomData(200)};
-	$scope.activeUsersCircleChart = generateActiveUsersCircleChartData();
+	
 	
 	/**Start: Generate random data for activeUserData**/
 	$scope.updateRealTimeChartData = function(){
@@ -123,7 +135,7 @@ function infrastructureCntrl($log,$scope,$timeout,User){
 		$scope.activeUsersCircleChart = generateActiveUsersCircleChartData();
 		$timeout($scope.updateActiveUseCircleChartData,1000);
 	};
-	$timeout($scope.updateActiveUseCircleChartData,1000);
+	//$timeout($scope.updateActiveUseCircleChartData,1000);
 	/**End: Generate random data for activeUsersCircleChart**/
 }
 

@@ -28,8 +28,8 @@ function generateRandomPercentage(){
 	return num+"%";
 }
 
-function generateRealTimeChartData(){
-	return {"users":100,"data":getRandomData(100)};
+function generateRealTimeChartData(users){
+	return {"users":users,"data":getRandomData(users)};
 }
 
 function generateRealTimeBrowserData(){
@@ -50,8 +50,9 @@ function generateVerticalStatusData(){
 	return [{"CN":"US","PER":generateRandomNumber()+'%'},{"CN":"PL","PER":generateRandomNumber()+'%'},{"CN":"GB","PER":generateRandomNumber()+'%'},{"CN":"DE","PER":generateRandomNumber()+'%'},{"CN":"NL","PER":generateRandomNumber()+'%'},{"CN":"CA","PER":generateRandomNumber()+'%'},{"CN":"FI","PER":generateRandomNumber()+'%'},{"CN":"RU","PER":generateRandomNumber()+'%'},{"CN":"AU","PER":generateRandomNumber()+'%'},{"CN":"IN","PER":generateRandomNumber()+'%'}];
 }
 
-function generateActiveUsersCircleChartData(){
-	return  [{"users":generateRandomNumber(),"label":"Active Users"},{"users":generateRandomNumber(),"label":"Users Logged Out"},{"users":generateRandomNumber(),"label":"New Users"},{"users":generateRandomNumber(),"label":"Connections Lost"}];
+function generateActiveUsersCircleChartData(activeUser){
+	return  [{"users":activeUser,"label":"Active Users"},
+	{"users":generateRandomNumber(),"label":"Users Logged Out"},{"users":generateRandomNumber(),"label":"New Users"},{"users":generateRandomNumber(),"label":"Connections Lost"}];
 }
 
 function generateChartData(){

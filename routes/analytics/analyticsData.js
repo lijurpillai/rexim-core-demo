@@ -5,9 +5,9 @@ exports.processAnalyticsData = function(socket){
 	var referrer = data.referrer;*/
 	var activeUsers = Object.keys(IO.connected).length;
 	var clientId = socket.id;
-
+	
 	socket.on('analyticsData',function(data){	
-  			  data.pageData.activeUsers = activeUsers;
+  			  data.activeUsers = activeUsers;
   			  data.clientId = clientId;
   			  console.log(data);
   			  IO.sockets.emit('analyticsData', { analyticsData: data });
