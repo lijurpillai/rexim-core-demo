@@ -5,8 +5,8 @@ var sparklineChartDirective = angular.module("SparkLineChart",[]);
 /* ---------- Sparkline Charts ---------- */
 sparklineChartDirective.directive('sparklinechart',function(){
 	return {
-		restrict : 'A',
-		link : function(scope, element, attr){
+		restrict : 'EA',
+		compile : function(scope, element, attr){
 			//generate random number for Sparkline charts
 			randNum = function(){
 				//return Math.floor(Math.random()*101);
