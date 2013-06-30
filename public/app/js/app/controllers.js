@@ -86,32 +86,23 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
 	/**method for generating the realtime json object**/
 	$scope.setRealTimeData(generateRealTimeData());	
 	$log.info($scope.getRealTimeData());
+
+	$scope.circleChartData = generateCircleChartData($scope.getRealTimeData());
+	$scope.realTimeChartData = generateRealTimeChartData($scope.getRealTimeData());	
+	$scope.verticalChartInputs = generateVerticalStatusData();	
+	$scope.browserUsingStatus = generateRealTimeBrowserData();
+	
 	
 	/**Start: Generate random data for RealTime Json Object**/
 	$scope.updateRealTimeData = function(){
 		$scope.setRealTimeData(generateRealTimeData());		
-		$scope.activeUsers = generateActiveUsersCountData($scope.getRealTimeData());
 		$scope.circleChartData = generateCircleChartData($scope.getRealTimeData());
+		$scope.realTimeChartData = generateRealTimeChartData($scope.getRealTimeData());
 		$timeout($scope.updateRealTimeData,1000);
 	};
 	$timeout($scope.updateRealTimeData,1000);
 	/**End: Generate random data for RealTime Json Object**/
 	
-	
-	$scope.verticalChartInputs = generateVerticalStatusData();	
-	$scope.browserUsingStatus = generateRealTimeBrowserData();	
-	$scope.realTimeChartData = generateRealTimeChartData();
-	
-	$scope.activeUsers = generateActiveUsersCountData($scope.getRealTimeData());
-	$scope.circleChartData = generateCircleChartData($scope.getRealTimeData());
-	
-	/**Start: Generate random data for realTimeChartData**/
-	$scope.updateRealTimeChartData = function(){
-		$scope.realTimeChartData = generateRealTimeChartData();
-		$timeout($scope.updateRealTimeChartData,8000);
-	};
-	$timeout($scope.updateRealTimeChartData,8000);
-	/**End: Generate random data for realTimeChartData**/
 
 	/**Start: Generate random data for browserUsingStatus**/
 	$scope.updateBrowserUsingStatusData = function(){
@@ -133,8 +124,7 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
 
 
 function dashboardHistoryCntrl($log,$scope,$timeout,$location,$rootScope,User){
-	$log.info("In dashboardHistoryCntrl");
-	
+	$log.info("In dashboardHistoryCntrl");	
 	if(!User.isValidUser()){
 		User.redirectToLogin();
 	}
@@ -146,10 +136,8 @@ function dashboardHistoryCntrl($log,$scope,$timeout,$location,$rootScope,User){
 		angular.element('#sidebar-left').css({display: 'block'});
 	}
 		
-	$scope.statusChartInputs = generateChartData();
-	
-	$scope.verticalChartInputs = generateVerticalStatusData();
-	
+	$scope.statusChartInputs = generateChartData();	
+	$scope.verticalChartInputs = generateVerticalStatusData();	
 	$scope.browserUsingStatus = generateRealTimeBrowserData();
 	
 

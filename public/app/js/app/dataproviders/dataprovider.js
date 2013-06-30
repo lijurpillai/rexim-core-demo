@@ -33,8 +33,8 @@ function generateRandomPercentage(){
 	return num+"%";
 }
 
-function generateRealTimeChartData(){
-	return {"users":100,"data":getRandomData(100)};
+function generateRealTimeChartData(data){
+	return {"users":data.activeUsers,"data":getRandomData(data.activeUsers)};
 }
 
 function generateRealTimeBrowserData(){
@@ -109,10 +109,10 @@ function generateCircleChartData(data){
 	}
 	activeUsersCount = data.activeUsers;
 	pageViewCount = generateRandomNumber();
-	return [{"count":newUsers,"label":'New Users'},{"count":usersLogOut,"label":'User LoggedOut'}
+	return [{"count": data.activeUsers,"label":"Active Users"},{"count":newUsers,"label":'New Users'},{"count":usersLogOut,"label":'User LoggedOut'}
 	,{"count":pageViewCount,"label":'Page Views'},{"count":generateRandomNumber(),"label":'TBD'},{"count":generateRandomNumber(),"label":'TBD'}];
 }
 
 function generateActiveUsersCountData(data){
-	return  [{"count": data.activeUsers,"label":"Active Users"}];
+	return  [];
 }

@@ -9,16 +9,6 @@
 	<div class="row-fluid hideInIE8">
 		<div class="span12">
 			<div class="circleStats">
-				<div class="span2" onTablet="span4" onDesktop="span2" ng-repeat="user in activeUsers">
-                   	<div id="activeUsers" class="circleStatsItemBox" circlechart="chartData">
-						<div class="header" ng-bind="user.label"></div>
-						<div class="circleStat">
-                       		<input type="text" class="whiteCircle" value="{{user.count}}"/>
-						</div>
-						<div class="footer" ng-bind="user.label"></div>
-                   	</div>
-				</div>
-            
 				<div class="span2" onTablet="span4" onDesktop="span2" ng-repeat="chartData in circleChartData">
                    	<div id="activeUsers{{$index}}" class="circleStatsItemBox" circlechart="chartData">
 						<div class="header" ng-bind="chartData.label"></div>
