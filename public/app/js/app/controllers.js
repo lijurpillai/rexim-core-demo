@@ -59,22 +59,9 @@ function indexCntrl($log,$scope,$timeout,$location){
 
 function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
 	$log.info("In dashboardCntrl");
-	var d = new Data();
-	$scope.loggedInTimer = d.toLocaleTimeString();
-
-	/*socket.on('analyticsData',function(data){
-		$log.info("socket");
-		$log.info(data.analyticsData.activeUsers);
-		$log.info(angular.toJson(data.analyticsData));
-		$scope.realTimeChartData = generateRealTimeChartData(data.analyticsData.activeUsers);
-
-	});
-	$log.info($scope.data);*/
-	
 	if(!User.isValidUser()){
 		User.redirectToLogin();
 	}
-	
 	if(!angular.equals("/login",$location.absUrl().split('#')[1])){
 		angular.element('#headerMenuBar').css({display: 'block'});
 		angular.element('#main-menu-toggle').css({display: 'block'});
@@ -82,11 +69,25 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
 		angular.element('#sidebar-left').css({display: 'block'});
 	}
 	
-	$scope.setRealTimeData(generateRealTimeData());
+	$scope.loggedInTimer = "00:00:00";
 	
+	/*socket.on('activeUsers',function(data){
+		$log.info("active users 1 " + data.activeUsers);
+		$scope.realTimeChartData = generateRealTimeChartData(data.activeUsers);
+		
+	});
+	
+	socket.on('analyticsData',function(data){
+		$log.info("socket");
+		$log.info(data.analyticsData.activeUsers);
+		$log.info(angular.toJson(data.analyticsData));
+	});*/
+	
+	/**method for generating the realtime json object**/
+	$scope.setRealTimeData(generateRealTimeData());	
 	$log.info($scope.getRealTimeData());
 	
-	/**Start: Generate random data for RealTimeData**/
+	/**Start: Generate random data for RealTime Json Object**/
 	$scope.updateRealTimeData = function(){
 		$scope.setRealTimeData(generateRealTimeData());		
 		$scope.activeUsers = generateActiveUsersCountData($scope.getRealTimeData());
@@ -94,7 +95,7 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
 		$timeout($scope.updateRealTimeData,1000);
 	};
 	$timeout($scope.updateRealTimeData,1000);
-	/**End: Generate random data for RealTimeData**/
+	/**End: Generate random data for RealTime Json Object**/
 	
 	
 	$scope.verticalChartInputs = generateVerticalStatusData();	
@@ -182,12 +183,22 @@ function infrastructureCntrl($log,$scope,$timeout,User){
 	if(!User.isValidUser()){
 		User.redirectToLogin();
 	}
+
 	/*socket.on('analyticsData',function(data){
 		$log.info("socket");
 		$log.info(data.analyticsData.activeUsers);
 		//$log.info(data.activeUsers);
 		$scope.activeUsersCircleChart = generateActiveUsersCircleChartData(data.analyticsData.activeUsers);
 
+	});*/
+	
+	/*socket.on('analyticsData',function(data){
+		// To Do
+	});
+
+	socket.on('activeUsers',function(data){
+		$log.info("active users 2 " + data.activeUsers);		
+		$scope.activeUsersCircleChart = generateActiveUsersCircleChartData(data.activeUsers);
 	});*/
 	
 

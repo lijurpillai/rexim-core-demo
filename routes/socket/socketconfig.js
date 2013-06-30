@@ -3,6 +3,7 @@ module.exports = function(server,sessionStore){
 //Initialize socket
 var socket = require('socket.io');
 var io = socket.listen(server);
+io.set('log level', 1);
 
 var utils = require('express/node_modules/connect/lib/utils')
 var cookie = require('express/node_modules/cookie');
@@ -33,7 +34,7 @@ function parseCookie(cookies){
     return {cookies:reqcookies,signedCookies:reqsignedCookies};
 };
 
-io.set('authorization', function (handshake_data, accept){
+/*io.set('authorization', function (handshake_data, accept){  // uncomment for enabling auth
 
      var data = handshake_data;
      if (data.headers.cookie) {        
@@ -71,7 +72,7 @@ io.set('authorization', function (handshake_data, accept){
         return accept('No cookie transmitted.', false);
       }      
 });
-
+*/
 
 
 // Since heroku does not support websocket, configuring XHR long polling
