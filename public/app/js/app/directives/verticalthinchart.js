@@ -10,6 +10,7 @@ verticalThinChartDirective.directive('verticalthinchart',function($log){
 			$log.info("In verticalthinchart");
 		    var bars = true;
 		    var plotWithOptions = function(data) {
+		    	$log.info("data inside green chart" + data.users);
 		        $.plot(angular.element("#"+attr.id), [data], {
 		            series: {
 		                bars: { show: bars, 

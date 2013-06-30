@@ -8,6 +8,7 @@ realtimeFireChart.directive('realtimefirechart',function($log){
 		restrict : 'A',
 		link : function(scope, element, attr){
 			$log.info("In realtimefirechart directive: ");
+			$log.info(attr.realtimefirechart);
 						
 			scope.$watch(attr.realtimefirechart,function realtimeFireChartWatch(value){
 				var realTimeData = scope.$eval(attr.realtimefirechart);
