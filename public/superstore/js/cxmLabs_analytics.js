@@ -1,9 +1,8 @@
 jQ(function(){ 
 
 
-  var url = 'http://localhost:3000/';
-  var socket = io.connect(url);  
-  var _fingerPrint = new Fingerprint();
+  
+  _fingerPrint = new Fingerprint();
   console.log("browser fingerprint " + _fingerPrint.get()); 
   
   var custId = "owaCustomer1";

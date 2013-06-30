@@ -5,12 +5,14 @@ exports.processAnalyticsData = function(socket){
 	var referrer = data.referrer;*/
 	var activeUsers = Object.keys(IO.connected).length;
 	var clientId = socket.id;
+	var ip = socket.handshake.address.address;
 
 	
 	
 	socket.on('analyticsData',function(data){	
   			  //data.activeUsers = activeUsers;
   			  data.clientId = clientId;
+  			  data.ip = ip;
   			  console.log(data);
   			  IO.sockets.emit('analyticsData', { analyticsData: data });
 	      });

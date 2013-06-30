@@ -23,6 +23,7 @@ var express = require('express')
 
 var socketConfig = './routes/socket/socketconfig.js';
 var sendAnalyticsData = require('./routes/analytics/analyticsData.js');
+var sendRuleData = require('./routes/rules/rulesData.js');
 
 /*var owaClientConfig = require('./routes/client/owaclient.js');
 var owaAdminConfig = require('./routes/admin/owadashboard.js');
@@ -84,6 +85,7 @@ IO.sockets.on('connection', function (socket){
   console.log("socket connecting ------");
   IO.sockets.emit('activeUsers', { 'activeUsers':Object.keys(IO.connected).length} ); // active users
   sendAnalyticsData.processAnalyticsData(socket); // send analytics data
+  sendRuleData.processRulesData(socket);
 
   socket.on('disconnect', function () {
     console.log("Socket Disconecting........." + Object.keys(IO.connected).length);
