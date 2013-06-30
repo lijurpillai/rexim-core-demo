@@ -1,0 +1,70 @@
+<!-- start: Content -->
+<div id="content" class="span11">
+	<div class="row-fluid">
+		
+	</div>
+	<div class="row-fluid hideInIE8">
+		<div class="span12">
+			<div class="circleStats">
+				<div class="span2" onTablet="span4" onDesktop="span2" ng-repeat="chartData in circleChartData">
+                   	<div id="activeUsers{{$index}}" class="circleStatsItemBox" circlechart="chartData">
+						<div class="header" ng-bind="chartData.label"></div>
+						<div class="circleStat">
+                       		<input type="text" class="whiteCircle" value="{{chartData.count}}"/>
+						</div>
+						<div class="footer" ng-bind="chartData.label"></div>
+                   	</div>
+				</div>
+            </div>
+		</div>
+	</div>
+	<div class="row-fluid">
+		<div class="widget span12">
+			<h2><span class="glyphicons fire"><i></i></span>Active Users</h2>
+			<hr>
+			 <div id="realtimechart" style="height:190px;" realtimefirechart="realTimeChartData"></div>
+		</div>
+	</div>
+	<hr>
+	<div class="row-fluid">
+	
+		<div class="widget span9" onTablet="span12" onDesktop="span9">
+			<h2><span class="glyphicons globe"><i></i></span> Page Hits</h2>
+			<hr>
+			<div class="content">
+				<div class="verticalChart" verticalchart>
+					<div id="{{$index}}" class="singleBar" ng-repeat="data in verticalChartInputs">					
+						<div class="bar">						
+							<div class="value">
+								<span ng-bind="data.PER"></span>
+							</div>						
+						</div>
+						<div class="title" ng-bind="data.CN"></div>
+					</div>
+				</div>
+			</div>
+		</div><!--/span-->
+		
+		<div class="widget span3 noMargin" onTablet="span6" onDesktop="span3">
+			<h2><span class="glyphicons pie_chart"><i></i></span> Browsers</h2>
+			<hr>
+			<div class="content">
+				<div ng-class="{true : 'browserStat big',false : 'browserStat'}[$index < 2]" ng-repeat="browserStatus in browserUsingStatus">
+					<img ng-src="{{browserStatus.icon_src}}" alt="{{browserStatus.name}}">
+					<span ng-bind = "browserStatus.users"></span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="widget span4" onTablet="span6" onDesktop="span4">
+			
+		</div><!--/span-->
+	</div>
+	<hr>
+	<div class="row-fluid">
+		
+	</div>
+</div>
+<!-- end: Content -->
+	
+	
