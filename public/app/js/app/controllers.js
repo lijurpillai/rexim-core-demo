@@ -57,7 +57,7 @@ function indexCntrl($log,$scope,$timeout,$location){
 	};
 }
 
-function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
+function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User,ActiveUserData,PageViewData,BrowserData){
 	$log.info("In dashboardCntrl");
 	if(!User.isValidUser()){
 		User.redirectToLogin();
@@ -98,28 +98,22 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
 
 	/**Start: Generate random data for RealTime Json Object**/
 	$scope.updateRealTimeData = function(){
-		$scope.setRealTimeData(generateRealTimeData());		
-		$scope.circleChartData = generateCircleChartData($scope.getRealTimeData());
-		$scope.realTimeChartData = generateRealTimeChartData($scope.getRealTimeData());
+		$scope.setRealTimeData(generateRealTimeData());
+		$scope.activeUsers = ActiveUserData.getActiveUsersCount($scope.getRealTimeData());
+		$scope.pageViewCount = PageViewData.getPageViewsCount($scope.getRealTimeData());
+		$scope.circleChartData = generateCircleChartData();
+		$scope.realTimeChartData = ActiveUserData.getActiveUsersRealTimeChartData($scope.getRealTimeData().activeUsers);
+		$scope.browserUsingStatus = BrowserData.getRealTimeBrowserData();
 		$timeout($scope.updateRealTimeData,1000);
 	};
 	$timeout($scope.updateRealTimeData,1000);
 	/**End: Generate random data for RealTime Json Object**/
 	
-	$scope.verticalChartInputs = generateVerticalStatusData();	
-	$scope.browserUsingStatus = generateRealTimeBrowserData();
-	
-	/**Start: Generate random data for browserUsingStatus**/
-	$scope.updateBrowserUsingStatusData = function(){
-		$scope.browserUsingStatus = generateRealTimeBrowserData();
-		$timeout($scope.updateBrowserUsingStatusData,12000);
-	};
-	$timeout($scope.updateBrowserUsingStatusData,12000);
-	/**End: Generate random data for browserUsingStatus**/
+	$scope.verticalChartInputs = PageViewData.getEachPageViewsCount($scope.getRealTimeData());
 	
 	/**Start: Generate random data for verticalChartInputs**/
 	$scope.updateVerticalChartData = function(){
-		$scope.verticalChartInputs = generateVerticalStatusData();
+		$scope.verticalChartInputs = PageViewData.getEachPageViewsCount($scope.getRealTimeData());
 		$timeout($scope.updateVerticalChartData,8000);
 	};
 	$timeout($scope.updateVerticalChartData,8000);

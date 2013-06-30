@@ -110,23 +110,6 @@ function generateChartData(){
 }
 
 
-var activeUsersCount;
-function generateCircleChartData(data){
-	var pageViewCount,usersLogOut = 0,newUsers = 0;
-	if(!angular.equals(undefined,activeUsersCount)){
-		if(activeUsersCount > data.activeUsers){
-			usersLogOut = activeUsersCount - data.activeUsers;
-		}else{
-			newUsers = data.activeUsers - activeUsersCount;
-		}
-		
-	}
-	activeUsersCount = data.activeUsers;
-	pageViewCount = generateRandomNumber();
-	return [{"count": data.activeUsers,"label":"Active Users"},{"count":newUsers,"label":'New Users'},{"count":usersLogOut,"label":'User LoggedOut'}
-	,{"count":pageViewCount,"label":'Page Views'},{"count":generateRandomNumber(),"label":'TBD'},{"count":generateRandomNumber(),"label":'TBD'}];
-}
-
-function generateActiveUsersCountData(data){
-	return  [];
+function generateCircleChartData(){
+	return [{"count":generateRandomNumber(),"label":'TBD'},{"count":generateRandomNumber(),"label":'TBD'}];
 }
