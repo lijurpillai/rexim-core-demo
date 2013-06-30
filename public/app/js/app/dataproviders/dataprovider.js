@@ -38,7 +38,11 @@ function generateRealTimeChartData(data){
 }
 
 function generateRealTimeBrowserData(){
-	var bData = [{"name":"Chrome","users":generateRandomPercentage(),"icon_src":"img/browser-chrome-big.png"},{"name":"Mozilla","users":generateRandomPercentage(),"icon_src":"img/browser-firefox-big.png"},{"name":"InternetExoplorer","users":generateRandomPercentage(),"icon_src":"img/browser-ie.png"},{"name":"Safari","users":generateRandomPercentage(),"icon_src":"img/browser-safari.png"},{"name":"Opera","users":generateRandomPercentage(),"icon_src":"img/browser-opera.png"}];
+	var bData = [{"name":"Chrome","users":generateRandomPercentage(),"icon_src":"img/browser-chrome-big.png"},
+	             {"name":"Mozilla","users":generateRandomPercentage(),"icon_src":"img/browser-firefox-big.png"},
+	             {"name":"InternetExoplorer","users":generateRandomPercentage(),"icon_src":"img/browser-ie.png"},
+	             {"name":"Safari","users":generateRandomPercentage(),"icon_src":"img/browser-safari.png"},
+	             {"name":"Opera","users":generateRandomPercentage(),"icon_src":"img/browser-opera.png"}];
 	return bData;
 }
 
@@ -52,7 +56,11 @@ function generateRandomNumber(){
 }
 
 function generateVerticalStatusData(){
-	return [{"CN":"US","PER":generateRandomNumber()+'%'},{"CN":"PL","PER":generateRandomNumber()+'%'},{"CN":"GB","PER":generateRandomNumber()+'%'},{"CN":"DE","PER":generateRandomNumber()+'%'},{"CN":"NL","PER":generateRandomNumber()+'%'},{"CN":"CA","PER":generateRandomNumber()+'%'},{"CN":"FI","PER":generateRandomNumber()+'%'},{"CN":"RU","PER":generateRandomNumber()+'%'},{"CN":"AU","PER":generateRandomNumber()+'%'},{"CN":"IN","PER":generateRandomNumber()+'%'}];
+	return [{"CN":"US","PER":generateRandomNumber()+'%'},{"CN":"PL","PER":generateRandomNumber()+'%'}
+	,{"CN":"GB","PER":generateRandomNumber()+'%'},{"CN":"DE","PER":generateRandomNumber()+'%'}
+	,{"CN":"NL","PER":generateRandomNumber()+'%'},{"CN":"CA","PER":generateRandomNumber()+'%'}
+	,{"CN":"FI","PER":generateRandomNumber()+'%'},{"CN":"RU","PER":generateRandomNumber()+'%'}
+	,{"CN":"AU","PER":generateRandomNumber()+'%'},{"CN":"IN","PER":generateRandomNumber()+'%'}];
 }
 
 
@@ -61,12 +69,18 @@ function generateRandomTemperature(){
 }
 
 function generateActiveUsersCircleChartData(){
-	return  [{"users":generateRandomNumber(),"label":"Active Users"},{"users":generateRandomNumber(),"label":"Users Logged Out"},{"users":generateRandomNumber(),"label":"New Users"},{"users":generateRandomNumber(),"label":"Connections Lost"}];
+	return  [{"users":generateRandomNumber(),"label":"Active Users"},{"users":generateRandomNumber(),"label":"Users Logged Out"}
+	,{"users":generateRandomNumber(),"label":"New Users"},{"users":generateRandomNumber(),"label":"Connections Lost"}];
 }
 
 
 function generateTemperatureStatusChartData(){
-	var bData = [{"temperature":generateRandomTemperature(),"componentName":"CPU Temperature"},{"temperature":generateRandomTemperature(),"componentName":"GPU Temperature"},{"temperature":generateRandomTemperature(),"componentName":"HDD Temperature"},{"temperature":generateRandomTemperature(),"componentName":"SDD Temperature"},{"temperature":generateRandomTemperature(),"componentName":"Memory Bank Temperature"},{"temperature":generateRandomTemperature(),"componentName":"Memory Controller Temperature"}];
+	var bData = [{"temperature":generateRandomTemperature(),"componentName":"CPU Temperature"},
+	             {"temperature":generateRandomTemperature(),"componentName":"GPU Temperature"},
+	             {"temperature":generateRandomTemperature(),"componentName":"HDD Temperature"},
+	             {"temperature":generateRandomTemperature(),"componentName":"SDD Temperature"},
+	             {"temperature":generateRandomTemperature(),"componentName":"Memory Bank Temperature"},
+	             {"temperature":generateRandomTemperature(),"componentName":"Memory Controller Temperature"}];
 	return bData;
 }
 

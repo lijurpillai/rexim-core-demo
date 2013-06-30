@@ -70,6 +70,15 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
 	}
 	
 	$scope.loggedInTimer = "00:00:00";
+	var timeObject = new Date;
+	/**Start: Generate random data for loggedInTimer**/
+	$scope.updateLoggedInTimer = function(){
+		var dateObj = new Date;
+		$scope.loggedInTimer = (timeObject.getHours() - dateObj.getHours())+" : "+(timeObject.getMinutes() - dateObj.getMinutes())+" : "+(timeObject.getSeconds() - dateObj.getSeconds());
+		$timeout($scope.updateLoggedInTimer,1000);
+	};
+	$timeout($scope.updateLoggedInTimer,1000);
+	/**End: Generate random data for loggedInTimer**
 	
 	/*socket.on('activeUsers',function(data){
 		$log.info("active users 1 " + data.activeUsers);
