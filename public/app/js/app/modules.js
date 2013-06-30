@@ -10,7 +10,7 @@ var chartDirectiveModules = angular.module("ChartDirectiveModules",['RealtimeFir
 
 var customeDirectiveModules = angular.module('CustomeDirectiveModules',['UserNameDisplay']);
 
-var serviceModules = angular.module('ServiceModules',['LoginUserService']);
+var serviceModules = angular.module('ServiceModules',['LoginUserService','UiDataService']);
 myModule.
 	 config(['$routeProvider', function($routeProvider) {
 			$routeProvider.

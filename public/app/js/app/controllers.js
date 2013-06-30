@@ -17,7 +17,6 @@ function indexCntrl($log,$scope,$timeout,$location){
 }
 
 
-
 function infrastructureCntrl($log,$scope,socket,$timeout,User){
 	$log.info("In infrastructureCntrl");
 	if(!User.isValidUser()){
