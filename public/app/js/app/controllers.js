@@ -87,12 +87,6 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
 	$scope.setRealTimeData(generateRealTimeData());	
 	$log.info($scope.getRealTimeData());
 
-	$scope.circleChartData = generateCircleChartData($scope.getRealTimeData());
-	$scope.realTimeChartData = generateRealTimeChartData($scope.getRealTimeData());	
-	$scope.verticalChartInputs = generateVerticalStatusData();	
-	$scope.browserUsingStatus = generateRealTimeBrowserData();
-	
-	
 	/**Start: Generate random data for RealTime Json Object**/
 	$scope.updateRealTimeData = function(){
 		$scope.setRealTimeData(generateRealTimeData());		
@@ -103,7 +97,9 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,User){
 	$timeout($scope.updateRealTimeData,1000);
 	/**End: Generate random data for RealTime Json Object**/
 	
-
+	$scope.verticalChartInputs = generateVerticalStatusData();	
+	$scope.browserUsingStatus = generateRealTimeBrowserData();
+	
 	/**Start: Generate random data for browserUsingStatus**/
 	$scope.updateBrowserUsingStatusData = function(){
 		$scope.browserUsingStatus = generateRealTimeBrowserData();
