@@ -3,8 +3,8 @@ $(document).ready(function(){
 	/* ---------- Acivate Functions ---------- */
 	template_functions();
 	init_masonry();
-	sparkline_charts();
-	charts();
+	//sparkline_charts();
+	//charts();
 	calendars();
 	growlLikeNotifications();
 	widthFunctions();
@@ -15,14 +15,14 @@ $(document).ready(function(){
 		
 	} else {
 		
-		circle_progess();
+		//circle_progess();
 		
 	}
 	
-	chart();
+	//chart();
 	messageLike();
 	
-	setInterval(tempStats, 3000);
+	//setInterval(tempStats, 3000);
 		
 });
 
@@ -58,7 +58,7 @@ function messageLike(){
 
 /* ---------- Temp Stats ---------- */
 
-function tempStats(){
+/*function tempStats(){
 
 	if($('.tempStat')) {
 		
@@ -110,7 +110,7 @@ function tempStats(){
 		
 	}
 	
-}
+}*/
 
 /* ---------- Masonry Gallery ---------- */
 
@@ -580,7 +580,7 @@ function template_functions(){
 }
 
 /* ---------- Circle Progess Bars ---------- */
-function circle_progess() {
+/*function circle_progess() {
 	
 	var divElement = $('div'); //log all div elements
 	
@@ -663,7 +663,7 @@ function circle_progess() {
 		
 	});	
 	
-}                
+}   */             
 
 /* ---------- Calendars ---------- */
 
@@ -861,7 +861,7 @@ function widget_area_functions() {
 	
 	/* ---------- Bar Stats ---------- */
 	
-	if (retina()) {
+	/*if (retina()) {
 
 		$(".bar-stat > .chart").each(function(){
 
@@ -897,12 +897,12 @@ function widget_area_functions() {
 
 		});
 
-	}
+	}*/
 	
 }
 
 /* ---------- Sparkline Charts ---------- */
-function sparkline_charts() {
+/*function sparkline_charts() {
 	
 	//generate random number for charts
 	randNum = function(){
@@ -952,7 +952,7 @@ function sparkline_charts() {
 	
 	}
 	
-}
+}*/
 
 /* ---------- Charts ---------- */
 

@@ -2,32 +2,12 @@
 <div id="content" class="span11">
 	<div class="row-fluid">
 		<div class="tempStats">
-			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
-				<div class="tempStat">78</div>
-				<span>CPU Temperature</span>
-			</div>
-			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
-				<div class="tempStat">78</div>
-				<span>GPU Temperature</span>
-			</div>
-			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
-				<div class="tempStat">78</div>
-				<span>HDD Temperature</span>
-			</div>
-			<div class="tempStatBox span2 noMargin" onTablet="span4" onDesktop="span2">
-				<div class="tempStat">78</div>
-				<span>SSD Temperature</span>
-			</div>
-			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
-				<div class="tempStat">78</div>
-				<span>Memory Bank Temperature</span>
-			</div>
-			<div class="tempStatBox span2" onTablet="span4" onDesktop="span2">
-				<div class="tempStat">78</div>
-				<span>Memory Controller Temperature</span>
+			<div ng-class="{true:'tempStatBox span2', false:'tempStatBox span2 noMargin'}[{{$index}} != 2]" onTablet="span4" onDesktop="span2" ng-repeat="chartData in temperatureChartData">
+				<div id="cputemp{{$index}}" class="tempStat" temperaturestatuschart="{{chartData.temperature}}"></div>
+				<span>{{chartData.componentName}}</span>
 			</div>
 			<div class="clearfix"></div>
-		</div>	
+		</div>
 		<div class="row-fluid hideInIE8">
 			<div class="span12">
 				<div class="circleStats">

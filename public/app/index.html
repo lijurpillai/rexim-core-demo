@@ -4,10 +4,10 @@
 	
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>User Activity Dashboard</title>
+	<title>RExIM</title>
 	<meta name="description" content="User Activity Dashboard.">
-	<meta name="author" content="SCJ">
-	<meta name="keyword" content="ACME, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+	<meta name="author" content="RExIM">
+	<meta name="keyword" content="RExIM, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 	<!-- end: Meta -->
 	
 	<!-- start: Mobile Specific -->
@@ -60,15 +60,16 @@
 	<script src="js/app/directives/realtimeserverstatuschart.js"></script>
 	<script src="js/app/directives/circlechart.js"></script>
 	<script src="js/app/directives/barchartcolorsmall.js"></script>
+	<script src="js/app/directives/temperaturestatuschart.js"></script>
 	<script src="js/app/directives/usernamedisplay.js"></script>
 	
 	<script src="js/app/services/userlogin.js"></script>
-	<script src="js/app/services/socketService.js"></script>
+	<!-- <script src="js/app/services/socketService.js"></script> -->
 	
 	<script src="js/app/dataproviders/dataprovider.js"></script>
 	<!--Socket libs-->
-	<script src="js/lib/socket/liju_socketIO.js"></script>
-  	<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+	<!-- <script src="js/lib/socket/liju_socketIO.js"></script>
+  	<script src="http://localhost:3000/socket.io/socket.io.js"></script> -->
   	<!--Socket libs ends-->
 
 	
@@ -101,7 +102,7 @@
 	<script src="js/lib/lib/justgage.1.0.1.min.js"></script>
 	<script src="js/lib/lib/retina.js"></script>
 	<script src="js/lib/lib/core.min.js"></script>
-	<script src="js/lib/lib/charts.js"></script>
+	<!-- <script src="js/lib/lib/charts.js"></script> -->
 	<script src="js/lib/lib/custom.js"></script>
 	<!-- end: JavaScript-->
 	
@@ -117,7 +118,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="#/index"><span>Acme, Inc</span></a>
+				<a class="brand" href="#/dashboard_realtime"><span>RExIM</span></a>
 								
 				<!-- start: Header Menu -->
 				<div class="nav-no-collapse header-nav" ng-init="headerMenu = 'views/headers/header_menu.html'" ng-include src="headerMenu"></div>
@@ -138,7 +139,7 @@
 		<div ng-init="noScript = 'views/headers/no_script.html'" ng-include src="noScript"></div>
 		<!--  start: no script -->
 		
-		<div ng-view></div>
+		<div ng-view ng-controller="indexCntrl"></div>
 		
 		<!-- start: Widgets Area -->
 		<div id="widgets-area" class="span2 hidden-tablet hidden-phone">
@@ -293,7 +294,7 @@
 			</div>
 		</div>
 		<!-- end: Widgets Area -->
-		<a id="widgets-area-button" class="hidden-tablet hidden-phone open"><i class="fa-icon-reorder"></i></a>				
+		<!-- <a id="widgets-area-button" class="hidden-tablet hidden-phone open"><i class="fa-icon-reorder"></i></a>	 -->			
 	</div>
 <!-- end: fluid-row-->
 		
