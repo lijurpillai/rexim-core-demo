@@ -5,7 +5,7 @@ jQ(function(){
   _fingerPrint = new Fingerprint();
   console.log("browser fingerprint " + _fingerPrint.get()); 
   
-  var custId = "owaCustomer1";
+  var custId = "SuperStore";
   var adminClientId = "";   
   console.log(document.cookie);
   //if (document.cookie) {};

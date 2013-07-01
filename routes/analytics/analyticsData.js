@@ -3,6 +3,7 @@ exports.processAnalyticsData = function(socket){
 	/*var url = data.url;
 	var ip = socket.handshake.address.address;
 	var referrer = data.referrer;*/
+	console.log("Initializing processAnalyticsData");
 	var activeUsers = Object.keys(IO.connected).length;
 	var clientId = socket.id;
 	var ip = socket.handshake.address.address;
@@ -13,7 +14,7 @@ exports.processAnalyticsData = function(socket){
   			  //data.activeUsers = activeUsers;
   			  data.clientId = clientId;
   			  data.ip = ip;
-  			  console.log(data);
+  			  //console.log(data);
   			  IO.sockets.emit('analyticsData', { analyticsData: data });
 	      });
 

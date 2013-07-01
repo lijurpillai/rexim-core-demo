@@ -74,7 +74,10 @@ uiDataService.service("PageViewData",function($log,UtilServices){
 	var homepageViewCount = 0;
 	//var pageViewCount = UtilServices.generateRandomNumber();
 	this.getPageViewsCount = function(pageViewData){
-		if(!angular.equals(undefined,pageViewData.pageData) && !angular.equals(undefined,pageViewData.pageData.pathname)){
+
+		if(!angular.equals(undefined,pageViewData.analyticsData.pageData) && 
+				!angular.equals(undefined,pageViewData.analyticsData.pageData.pathname)){
+			$log.info("inside getPageViewsCount");
 			pageViewCount++;
 		}
 		return [{"count": pageViewCount,"label":"Page Views"}];
@@ -82,13 +85,18 @@ uiDataService.service("PageViewData",function($log,UtilServices){
 	
 	this.getEachPageViewsCount = function(pageViewData){
 		var homepageViewCountPer = 0;
-		if(!angular.equals(undefined,pageViewData.pageData) && !angular.equals(undefined,pageViewData.pageData.pathname)){
-			if(angular.equals("/",pageViewData.pageData.pathname)){
+		$log.info("page pathe ---");
+		
+		if(!angular.equals(undefined,pageViewData.analyticsData.pageData) && 
+				!angular.equals(undefined,pageViewData.analyticsData.pageData.pathname)){
+			if(angular.equals("/",pageViewData.analyticsData.pageData.pathname)){
+				$log.info("inside getEachPageViewsCount");
 				homepageViewCount++;
-				homepageViewCountPer = homepageViewCount/100;
+				homepageViewCountPer = homepageViewCount;
+				$log.info(homepageViewCountPer);
 			}
 		}
-		return [{"CN":"Home","PER":homepageViewCountPer+"%"},{"CN":"PDP","PER":UtilServices.generateRandomPercentage()}
+		return [{"CN":"Home","PER":homepageViewCountPer},{"CN":"PDP","PER":UtilServices.generateRandomPercentage()}
 		,{"CN":"GB","PER":UtilServices.generateRandomPercentage()},{"CN":"DE","PER":UtilServices.generateRandomPercentage()}
 		,{"CN":"NL","PER":UtilServices.generateRandomPercentage()},{"CN":"CA","PER":UtilServices.generateRandomPercentage()}
 		,{"CN":"FI","PER":UtilServices.generateRandomPercentage()},{"CN":"RU","PER":UtilServices.generateRandomPercentage()}

@@ -26,6 +26,8 @@ var sendAnalyticsData = require('./routes/analytics/analyticsData.js');
 var sendRuleData = require('./routes/rules/rulesData.js');
 var owaChatHandler = require('./routes/chat/chat.js');
 
+var rulesData = []; // list of rule data to be sent to dashboard
+
 /*var owaClientConfig = require('./routes/client/owaclient.js');
 var owaAdminConfig = require('./routes/admin/owadashboard.js');
 var owaClientData = require('./routes/client/clientdata.js');
@@ -86,7 +88,7 @@ IO.sockets.on('connection', function (socket){
   console.log("socket connecting ------");
   IO.sockets.emit('activeUsers', { 'activeUsers':Object.keys(IO.connected).length} ); // active users
   sendAnalyticsData.processAnalyticsData(socket); // send analytics data
-  sendRuleData.processRulesData(socket);
+  sendRuleData.processRulesData(socket,rulesData);
   owaChatHandler.chatHandler(socket);
 
   socket.on('disconnect', function () {

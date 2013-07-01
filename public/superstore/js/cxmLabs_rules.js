@@ -23,7 +23,7 @@ jQ(function(){
  //**Rule constructor**//
 	function RuleDetails(ruleId){    	
     	this.ruleType = getRuleDetails(ruleId).rtype;
-    	this.ruleDec =  getRuleDetails(ruleId).rdesc;   	    	   
+    	this.ruleDesc =  getRuleDetails(ruleId).rdesc;          	    	   
       }  
 
 
@@ -37,9 +37,11 @@ jQ(function(){
     {   var ruleId = "0001";
 		console.log("inside rule " + ruleId);
     	if(jQ('.note-msg').text().trim() == 'Your search returns no results.'){
-    		var ruleData = new RuleData("owaCustomer1","apiKEY" , "1.0",ruleId );
+    		var ruleData = new RuleData("SuperStore","apiKEY" , "1.0",ruleId );
     		ruleData.ruleDetails = new RuleDetails(ruleId);
     		ruleData.ruleDetails.searchParam = window.location.search; // add params
+            ruleData.ruleDetails.chat = true;
+            ruleData.ruleDetails.offer = true;
     		console.log(ruleData );
     		socket.emit('noResultsFound',ruleData);
        	}   		
@@ -64,8 +66,10 @@ jQ(function(){
      	// if error on apply coupon and subtotal > trigger price
      	if((jQ('.error-msg').length > 0)&&(subtotal>triggerPrice)){
      		console.log("activating rule 0002");
-     		var ruleData = new RuleData("owaCustomer1","apiKEY" , "1.0",ruleId );
+     		var ruleData = new RuleData("SuperStore","apiKEY" , "1.0",ruleId );
      		ruleData.ruleDetails = new RuleDetails(ruleId);
+            ruleData.ruleDetails.chat = true;
+            ruleData.ruleDetails.offer = false;
      		console.log(ruleData);
      		socket.emit('couponError',ruleData);
      		

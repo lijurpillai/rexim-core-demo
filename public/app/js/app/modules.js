@@ -1,6 +1,6 @@
 
-var myModule = angular.module("MyModule",['DirectiveModules','ServiceModules']);
-//var myModule = angular.module("MyModule",['DirectiveModules','owappServices','ServiceModules']);
+// Sallap var myModule = angular.module("MyModule",['DirectiveModules','ServiceModules']);
+var myModule = angular.module("MyModule",['DirectiveModules','owappServices','ServiceModules']);
 
 var directiveModules = angular.module("DirectiveModules",['ChartDirectiveModules','CustomeDirectiveModules']);
 

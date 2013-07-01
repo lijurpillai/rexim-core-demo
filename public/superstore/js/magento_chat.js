@@ -21,7 +21,9 @@ var box = null;
           $('#conversation').append('<b>'+supportUser + ':</b> ' + msg + '<br>');
           var objDiv = document.getElementById("conversation");
           objDiv.scrollTop = objDiv.scrollHeight;*/
-          console.log("OHM");
+          //box.messageSent(msg);
+          console.log("OHM" + msg);
+          console.log(box);
         });
 
 

@@ -14,35 +14,36 @@
 						  <thead>
 							  <tr>
 								  <th>#</th>
+								  <th>Customer Id</th>
+								  <th>Client Id</th>
+								  <th>Tracking Id</th>
 								  <th>Rule Id</th>
-								  <th>Rule Name</th>
-								  <th>Rule Desc</th>
+								  <th>Rule Name</th>								  
 								  <th>Status</th>								  
 								  <th>Actions</th>
 							  </tr>
-						  </thead>   
-						  <tbody>
+						  </thead> 
+						  <tbody ng-repeat="data in ruleData">
 							<tr>
-								<td>1</td>
-								<td class="center">0001</td>
-								<td class="center">Coupon Error</td>
-								<td class="center">Coupon Error</td>
+								<td>{{$index+1}}</td>
+								<td class="center">{{data.custId}}</td>
+								<td class="center">{{data.clientId}}</td>
+								<td class="center">{{data.trackingId}}</td>
+								<td class="center">{{data.ruleId}}</td>
+								<td class="center">{{data.ruleDetails.ruleType}}</td>					
 								<td class="center">
-									<span class="label label-success">Active</span>
+									<span class="label label-success">{{status}}</span>
 								</td>
 								<td class="center">
-									<a class="btn btn-success" href="" ng-click="chat(data.clientId)">
+									<a class="btn btn-success" href="" ng-show = "chatStatus(data)" ng-click="chat(data.clientId)">
 										<i class="halflings-icon zoom-in halflings-icon" ></i>  
 									</a>
-									<a class="btn btn-info" href="#">
+									<a class="btn btn-info" ng-show = "offerStatus(data)" href="#">
 										<i class="halflings-icon edit halflings-icon"></i>  
 									</a>
-									<a class="btn btn-danger" href="#">
+									<a class="btn btn-danger" ng-show = {{true}} href="#">
 										<i class="halflings-icon trash halflings-icon"></i> 
 									</a>
-
-									
-
 								</td>
 							</tr>
 							
