@@ -45,19 +45,21 @@ uiDataService.service("UtilServices",function($log){
 });
 
 uiDataService.service("ActiveUserData",function($log,UtilServices){
-	var activeUsersCount;
-	this.getActiveUsersCount = function(activeUsersdata){
+	var activeUsersCount = 0;
+	this.getActiveUsersCount = function(userCount){
 		var usersLogOut = 0,newUsers = 0;
-		if(!angular.equals(undefined,activeUsersCount)){
-			if(activeUsersCount > activeUsersdata.activeUsers){
-				usersLogOut = activeUsersCount - activeUsersdata.activeUsers;
+		if(!angular.equals(undefined,userCount)){
+			if(activeUsersCount > userCount){
+				usersLogOut = activeUsersCount - userCount;
 			}else{
-				newUsers = activeUsersdata.activeUsers - activeUsersCount;
+				newUsers = userCount - activeUsersCount;
 			}
 			
+		}else{
+			userCount = 0;
 		}
-		activeUsersCount = activeUsersdata.activeUsers;
-		return [{"count": activeUsersdata.activeUsers,"label":"Active Users"},{"count":newUsers,"label":'New Users'},{"count":usersLogOut,"label":'User LoggedOut'}];
+		activeUsersCount = userCount;
+		return [{"count": userCount,"label":"Active Users"},{"count":newUsers,"label":'New Users'},{"count":usersLogOut,"label":'User LoggedOut'}];
 	};
 	
 	this.getActiveUsersRealTimeChartData = function(count){

@@ -1,8 +1,8 @@
 
-var myModule = angular.module("MyModule",['DirectiveModules','owappServices','ServiceModules']);
+var myModule = angular.module("MyModule",['DirectiveModules','ServiceModules']);
+//var myModule = angular.module("MyModule",['DirectiveModules','owappServices','ServiceModules']);
 
-var directiveModules = angular.module("DirectiveModules",['ChartDirectiveModules',
-	'CustomeDirectiveModules']);
+var directiveModules = angular.module("DirectiveModules",['ChartDirectiveModules','CustomeDirectiveModules']);
 
 var chartDirectiveModules = angular.module("ChartDirectiveModules",['RealtimeFireChart',
 	'VerticalChart','VerticalThinChart','CircleChart','RealtimeServerStatusChart',

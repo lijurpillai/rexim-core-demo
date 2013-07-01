@@ -35,11 +35,11 @@ function infrastructureCntrl($log,$scope,socket,$timeout,User){
 		// To Do
 	});*/
 
-	socket.on('activeUsers',function(data){
+	/*socket.on('activeUsers',function(data){
 		$log.info("active users 2 " + data.activeUsers);		
 		$scope.activeUserData = {"users":data.activeUsers,"data":getRandomData(150)};
 		
-	});
+	});*/
 	
 
 	$scope.activeUserData = {"users":150,"data":getRandomData(150)};

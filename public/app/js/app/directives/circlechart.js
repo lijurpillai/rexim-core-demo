@@ -8,7 +8,6 @@ circlechartDirective.directive('circlechart',function($log){
 		restrict : 'A',
 		link : function(scope, element, attr){
 			scope.$watch(attr.circlechart,function circlechartWatch(value){
-				$log.info(attr.circlechart);
 				if(window.devicePixelRatio > 1) {
 					angular.element("#"+attr.id).find('.whiteCircle').knob({
 				        'min':0,
