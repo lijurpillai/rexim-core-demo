@@ -1,3 +1,4 @@
+jQ(function(){ 
 var box = null;
 	jQ(".footer-container").append("<div id ='chatBox'></div>");
 	if(box) {
@@ -13,3 +14,15 @@ var box = null;
 	                                            .addMsg(id, msg);
 	                                        }});
               }
+
+    socket.on('msgFromAdmin',function(msg,adminId,supportUser){
+          adminClientId = adminId;
+          /*$("#chatDiv").show(500);
+          $('#conversation').append('<b>'+supportUser + ':</b> ' + msg + '<br>');
+          var objDiv = document.getElementById("conversation");
+          objDiv.scrollTop = objDiv.scrollHeight;*/
+          console.log("OHM");
+        });
+
+
+  });

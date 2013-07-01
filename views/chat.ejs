@@ -8,13 +8,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Le styles -->
-    <link href="app/stylesheets/bootstrap.css" rel="stylesheet">
+    <!--link href="app/stylesheets/bootstrap.css" rel="stylesheet"-->
     <style>
         body {
             padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
         }
     </style>
-    <link href="app/stylesheets/bootstrap-responsive.css" rel="stylesheet"> 
+    <!--link href="app/stylesheets/bootstrap-responsive.css" rel="stylesheet"--> 
+
+    <link href="app/css/bootstrap.min.css" rel="stylesheet">
+  <link href="app/css/bootstrap-responsive.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="container-fluid">
@@ -32,7 +35,8 @@
   </body>
 
 <script src="/socket.io/socket.io.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script> -->
+<script src="app/js/lib/lib/jquery-1.9.1.min.js"></script>
 <script>
   var socket = io.connect('http://localhost:3000');
   var supportUser = "Support Agent";
