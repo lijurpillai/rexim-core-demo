@@ -1,6 +1,7 @@
 "use strict";
 
-function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
+function dashboardCntrl($log,$scope,$timeout,$location,User,ActiveUserData,PageViewData,BrowserData){
+//function dashboardCntrl($log,$scope,$timeout,$location,socket,User,ActiveUserData,PageViewData,BrowserData){
 	$log.info("In dashboardCntrl");
 	if(!User.isValidUser()){
 		User.redirectToLogin();
@@ -20,10 +21,10 @@ function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
 		$scope.loggedInTimer = (timeObject.getHours() - dateObj.getHours())+" : "+(timeObject.getMinutes() - dateObj.getMinutes())+" : "+(timeObject.getSeconds() - dateObj.getSeconds());
 		$timeout($scope.updateLoggedInTimer,1000);
 	};
-	$timeout($scope.updateLoggedInTimer,1000);
-	//End: Generate random data for loggedInTimer
+	//$timeout($scope.updateLoggedInTimer,1000);
+	/**End: Generate random data for loggedInTimer*/
 	
-	socket.on('activeUsers',function(data){				
+	/*socket.on('activeUsers',function(data){				
 		$log.info("active users 1 " + data.activeUsers);
 		_activeUsers.push(data.activeUsers);
 		$log.info(_activeUsers);
@@ -37,36 +38,32 @@ function dashboardCntrl($log,$scope,socket,$timeout,$location,$rootScope,User){
 		$log.info("socket");
 		$log.info(data.analyticsData.activeUsers);
 		$log.info(angular.toJson(data.analyticsData));
-	});
+	});*/
 	
-	/**method for generating the realtime json object**/
+	
+	/**Start: Method for generating the realtime json object**/
 	$scope.setRealTimeData(generateRealTimeData());	
 	$log.info($scope.getRealTimeData());
+	/**End: Method for generating the realtime json object**/
 
 	/**Start: Generate random data for RealTime Json Object**/
 	$scope.updateRealTimeData = function(){
-		$scope.setRealTimeData(generateRealTimeData());		
-		//$scope.circleChartData = generateCircleChartData($scope.getRealTimeData());
-		//$scope.realTimeChartData = generateRealTimeChartData($scope.getRealTimeData());
-		$timeout($scope.updateRealTimeData,1000);
+		$scope.setRealTimeData(generateRealTimeData());
+		$scope.activeUsers = ActiveUserData.getActiveUsersCount($scope.getRealTimeData().activeUsers);
+		$scope.pageViewCount = PageViewData.getPageViewsCount($scope.getRealTimeData());
+		$scope.circleChartData = generateCircleChartData();
+		$scope.realTimeChartData = ActiveUserData.getActiveUsersRealTimeChartData($scope.getRealTimeData().activeUsers);
+		$scope.browserUsingStatus = BrowserData.getRealTimeBrowserData();
+		$scope.timmerId = $timeout($scope.updateRealTimeData,1000);
 	};
-	$timeout($scope.updateRealTimeData,1000);
+	$scope.timmerId = $timeout($scope.updateRealTimeData,1000);
 	/**End: Generate random data for RealTime Json Object**/
 	
-	$scope.verticalChartInputs = generateVerticalStatusData();	
-	$scope.browserUsingStatus = generateRealTimeBrowserData();
-	
-	/**Start: Generate random data for browserUsingStatus**/
-	$scope.updateBrowserUsingStatusData = function(){
-		$scope.browserUsingStatus = generateRealTimeBrowserData();
-		$timeout($scope.updateBrowserUsingStatusData,12000);
-	};
-	$timeout($scope.updateBrowserUsingStatusData,12000);
-	/**End: Generate random data for browserUsingStatus**/
+	$scope.verticalChartInputs = PageViewData.getEachPageViewsCount($scope.getRealTimeData());
 	
 	/**Start: Generate random data for verticalChartInputs**/
 	$scope.updateVerticalChartData = function(){
-		$scope.verticalChartInputs = generateVerticalStatusData();
+		$scope.verticalChartInputs = PageViewData.getEachPageViewsCount($scope.getRealTimeData());
 		$timeout($scope.updateVerticalChartData,8000);
 	};
 	$timeout($scope.updateVerticalChartData,8000);
