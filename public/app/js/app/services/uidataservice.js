@@ -59,7 +59,8 @@ uiDataService.service("ActiveUserData",function($log,UtilServices){
 			userCount = 0;
 		}
 		activeUsersCount = userCount;
-		return [{"count": userCount,"label":"Active Users"},{"count":newUsers,"label":'New Users'},{"count":usersLogOut,"label":'User LoggedOut'}];
+		//return [{"count": userCount,"label":"Active Users"},{"count":newUsers,"label":'New Users'},{"count":usersLogOut,"label":'User LoggedOut'}];
+		return [{"count": userCount,"label":"Active Users"}];
 	};
 	
 	this.getActiveUsersRealTimeChartData = function(count){
@@ -89,12 +90,14 @@ uiDataService.service("PageViewData",function($log,UtilServices){
 		
 		if(!angular.equals(undefined,pageViewData.analyticsData.pageData) && 
 				!angular.equals(undefined,pageViewData.analyticsData.pageData.pathname)){
-			if(angular.equals("/",pageViewData.analyticsData.pageData.pathname)){
-				$log.info("inside getEachPageViewsCount");
+
+			
+			if(angular.equals("/",pageViewData.analyticsData.pageData.pathname)){				
 				homepageViewCount++;
 				homepageViewCountPer = homepageViewCount;
 				$log.info(homepageViewCountPer);
 			}
+
 		}
 		return [{"CN":"Home","PER":homepageViewCountPer},{"CN":"PDP","PER":UtilServices.generateRandomPercentage()}
 		,{"CN":"GB","PER":UtilServices.generateRandomPercentage()},{"CN":"DE","PER":UtilServices.generateRandomPercentage()}

@@ -1,7 +1,7 @@
 "use strict";
 
 // sallap function dashboardCntrl($log,$scope,$timeout,$location,User,ActiveUserData,PageViewData,BrowserData){
-function dashboardCntrl($log,$scope,$timeout,$location,socket,User,ActiveUserData,PageViewData,BrowserData){
+function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,ActiveUserData,PageViewData,BrowserData){
 	$log.info("In dashboardCntrl");
 	if(!User.isValidUser()){
 		User.redirectToLogin();
@@ -11,6 +11,24 @@ function dashboardCntrl($log,$scope,$timeout,$location,socket,User,ActiveUserDat
 		angular.element('#main-menu-toggle').css({display: 'block'});
 		angular.element('#widgets-area-button').css({display: 'block'});
 		angular.element('#sidebar-left').css({display: 'block'});
+	}	
+	
+	if($rootScope.masterActiveUserData){
+
+		if(!$scope.activeUsers){
+			$scope.activeUsers =ActiveUserData.
+						getActiveUsersCount($rootScope.masterActiveUserData.activeUsers);
+		}
+		if(!$scope.realTimeChartData){		
+			$scope.realTimeChartData =ActiveUserData.
+						getActiveUsersRealTimeChartData($rootScope.masterActiveUserData.activeUsers);		
+		}
+	}
+	if($rootScope.masterPageViewData){
+		
+		if(!$scope.pageViewCount){
+			$scope.pageViewCount = PageViewData.getPageViewsCount($rootScope.masterPageViewData);
+		}		
 	}
 	
 	$scope.loggedInTimer = "00:00:00";
@@ -26,20 +44,21 @@ function dashboardCntrl($log,$scope,$timeout,$location,socket,User,ActiveUserDat
 	
 	socket.on('activeUsers',function(data){				
 		$log.info("active users 1 " + data.activeUsers);
-		_activeUsers.push(data.activeUsers);
-		$log.info(_activeUsers);
+		/*_activeUsers.push(data.activeUsers);
+		$log.info(_activeUsers);*/
 		//$scope.realTimeChartData = generateRealTimeChartData(data);
 		//$scope.realTimeChartData = _activeUsers;
 		//$scope.circleChartData = generateCircleChartData(data);
+		$rootScope.masterActiveUserData = data;
 		$scope.activeUsers = ActiveUserData.getActiveUsersCount(data.activeUsers);
 		$scope.realTimeChartData = ActiveUserData.getActiveUsersRealTimeChartData(data.activeUsers);
+
 		
 	});
 	
 	socket.on('analyticsData',function(data){
 		$log.info("inside analyticsData");
-		$log.info(data.analyticsData.activeUsers);
-		$log.info(angular.toJson(data.analyticsData));
+		$rootScope.masterPageViewData = data;
 		$scope.pageViewCount = PageViewData.getPageViewsCount(data);
 		$scope.circleChartData = generateCircleChartData();
 		$scope.browserUsingStatus = BrowserData.getRealTimeBrowserData();
@@ -48,8 +67,8 @@ function dashboardCntrl($log,$scope,$timeout,$location,socket,User,ActiveUserDat
 	
 	
 	/**Sallap --Start: Method for generating the realtime json object**/
-	$scope.setRealTimeData(generateRealTimeData());	
-	$log.info($scope.getRealTimeData());
+	/*$scope.setRealTimeData(generateRealTimeData());	
+	$log.info($scope.getRealTimeData());*/
 	/**End: Method for generating the realtime json object**/
 
 	/**Start: Generate random data for RealTime Json Object**/

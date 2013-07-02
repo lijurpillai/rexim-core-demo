@@ -8,7 +8,7 @@
 			<div class="circleStats">
 				<div class="span2" onTablet="span4" onDesktop="span2" ng-repeat="actuser in activeUsers">
                    	<div id="activeUsers{{$index}}" class="circleStatsItemBox" circlechart="actuser">
-						<div class="header" ng-bind="actuser.label"></div>
+						<div class="header" >There are</div>
 						<div class="circleStat">
                        		<input type="text" class="whiteCircle" value="{{actuser.count}}"/>
 						</div>
@@ -17,7 +17,7 @@
 				</div>
 				<div class="span2" onTablet="span4" onDesktop="span2" ng-repeat="pageview in pageViewCount">
                    	<div id="pageView{{$index}}" class="circleStatsItemBox" circlechart="pageview">
-						<div class="header" ng-bind="pageview.label"></div>
+						<div class="header" >There are </div>
 						<div class="circleStat">
                        		<input type="text" class="whiteCircle" value="{{pageview.count}}"/>
 						</div>
