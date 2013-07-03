@@ -1,0 +1,209 @@
+
+			
+			<!-- start: Content Rule Starts-->
+			<div id="content" class="span11">
+			
+						
+			<div class="row-fluid sortable">
+				<div class="box span12">
+					<div class="box-header" data-original-title>
+						<h2><i class="halflings-icon edit"></i><span class="break"></span>Rule Definition</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<form class="form-horizontal">
+						  <fieldset>
+							<div class="control-group">
+							  <label class="control-label" for="typeahead">Rule Name</label>
+							  <div class="controls">
+								<input type="text" class="span6 typeahead" id="typeahead"  data-provide="typeahead" data-items="4" data-source='["Coupon error and Cart value greater than USD 500 ","Cart value greater than USD 500"]'>
+								<span class="help-inline">Rule Name should be Unique</span>
+							  </div>
+							</div>
+							<div class="control-group">
+							  <label class="control-label" for="date01">Rule start Date</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="date01" value="06/06/13">
+							  </div>
+							</div>
+							<div class="control-group">
+							  <label class="control-label" for="date01">Rule End Date</label>
+							  <div class="controls">
+								<input type="text" class="input-xlarge datepicker" id="date02" value="07/06/13">
+							  </div>
+							</div> 
+							<div class="control-group">  
+							  <div class="box span12">
+									<div class="box-header">
+										<h2><i class="halflings-icon align-justify"></i><span class="break"></span>Define Rule</h2>
+										<div class="box-icon">
+											<a href="#" class="btn-plus"><i class="halflings-icon plus"></i></a>
+											<a href="#" class="btn-minus"><i class="halflings-icon minus"></i></a>
+											<!--<a href="#" class="btn-close"><i class="halflings-icon asterisk"></i></a>-->
+										</div>
+									</div>
+									<div class="box-content">
+									<table class="table">
+										  <thead>
+											  <tr>
+												  <th>Criteria</th>
+												  <th>Condition</th>
+												  <th>Value</th>
+												  <th>And/Or</th>  
+												  <th>Then</th>                                        
+											  </tr>
+										  </thead>   
+										  <tbody>
+											<tr>
+												<td class="center">
+													<select id="selectError1" data-rel="chosen">
+														<option>Current Cart value</option>
+														<option>Current Cart Size</option>
+														<option>Current User</option>
+														<option>Error Code</option> 
+													 </select> 
+												</td>
+												<td class="center"> 
+												  <select id="selectError2" data-rel="chosen"> 
+													<option>Equals to</option>
+													<option>Greater than</option>
+													<option>Less than</option>
+													<option>Greater than and Equals to</option>
+													<option>Less than and Equals to</option>
+												  </select> 
+												</td> 
+												<td class="center"> 
+												  <select id="selectError3" data-rel="chosen">
+														<option>Constant</option>
+														<option>Lookup</option> 
+												  </select> 
+												  <input type="text" class="input-small " id="constant" value="500"> 
+												</td>
+												<td class="center">
+													<label class="checkbox inline">
+													<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""> And
+													</label>
+													<label class="checkbox inline">
+													<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2" checked=""> Or
+													</label>
+												</td>       
+												<td class="center">
+												   <select id="selectError4" data-rel="chosen">
+														<option>Trigger Chat</option>
+														<option>Push Promotion Code</option> 
+												   </select> 
+												   <input type="text" class="input-small " id="constant" value="500"> 
+												</td>                                
+											</tr>                                 
+										  </tbody>
+									 </table>  
+									</div> 
+							   </div>
+							</div> 
+							<div class="form-actions">
+							  <button type="submit" class="btn btn-primary">Approve</button>
+							  <button type="submit" class="btn btn-primary">Reject</button>
+							  <button type="submit" class="btn btn-primary">Save</button>
+							  <button type="reset" class="btn">Cancel</button>
+							</div>
+						  </fieldset>
+						</form>   
+
+					</div>
+				</div><!--/span-->
+
+			</div><!--/row-->
+
+			<div class="row-fluid">	
+				<div class="box span12">
+					<div class="box-header">
+						<h2><i class="halflings-icon align-justify"></i><span class="break"></span>Rules</h2>
+						<div class="box-icon">
+							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
+							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
+							<a href="#" class="btn-close"><i class="halflings-icon remove"></i></a>
+						</div>
+					</div>
+					<div class="box-content">
+						<table class="table table-bordered table-striped table-condensed">
+							  <thead>
+								  <tr>
+									  <th>Rule ID </th>
+									  <th>Rule Name</th>
+									  <th>Start Date</th> 
+									  <th>Expired Date</th> 
+									  <th>Status</th>                                          
+								  </tr>
+							  </thead>   
+							  <tbody>
+								<tr>
+									<td>1</td>
+									<td>Coupon error and Cart value greater than USD 500</td>
+									<td class="center">2013/01/06</td> 
+									<td class="center">2013/08/06</td> 
+									<td class="center">
+										<span class="label label-success">Active</span>
+									</td>                                       
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Coupon error and Cart value greater than USD 1500</td>
+									<td class="center">2013/01/06</td> 
+									<td class="center">2013/07/06</td> 
+									<td class="center">
+										<span class="label label-important">Expired</span>
+									</td>                                       
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Cart value greater than USD 600</td>
+									<td class="center">2013/08/06</td> 
+									<td class="center">2013/09/06</td> 
+									<td class="center">
+										<span class="label">Inactive</span>
+									</td>                                        
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>Cart value greater than USD 1000</td>
+									<td class="center">2013/08/06</td> 
+									<td class="center">2013/12/06</td> 
+									<td class="center">
+										<span class="label label-warning">Pending</span>
+									</td>                                       
+								</tr>  
+								<tr>
+									<td>5</td>
+									<td>Cart value greater than USD 500</td>
+									<td class="center">2013/08/06</td> 
+									<td class="center">2013/12/06</td> 
+									<td class="center">
+										<span class="label label-success">Active</span>
+									</td>                                       
+								</tr>                   
+							  </tbody>
+						 </table>  
+						 <div class="pagination pagination-centered">
+						  <ul>
+							<li><a href="#">Prev</a></li>
+							<li class="active">
+							  <a href="#">1</a>
+							</li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">Next</a></li>
+						  </ul>
+						</div>  			
+					</div>
+				</div><!--/span-->
+			</div><!--/row--> 
+					
+			</div>
+			<!-- end: Content Rule Ends-->
+			
+			

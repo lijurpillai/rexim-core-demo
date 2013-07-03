@@ -14,7 +14,6 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,Ac
 	}	
 	
 	if($rootScope.masterActiveUserData){
-
 		if(!$scope.activeUsers){
 			$scope.activeUsers =ActiveUserData.
 						getActiveUsersCount($rootScope.masterActiveUserData.activeUsers);
@@ -27,7 +26,8 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,Ac
 	if($rootScope.masterPageViewData){
 		
 		if(!$scope.pageViewCount){
-			$scope.pageViewCount = PageViewData.getPageViewsCount($rootScope.masterPageViewData);
+			$scope.pageViewCount = PageViewData.getPageViewsCount($rootScope.masterPageViewData);			
+			$scope.pageViewLabel = "Page View";
 		}		
 	}
 	
@@ -43,12 +43,7 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,Ac
 	/**End: Generate random data for loggedInTimer*/
 	
 	socket.on('activeUsers',function(data){				
-		$log.info("active users 1 " + data.activeUsers);
-		/*_activeUsers.push(data.activeUsers);
-		$log.info(_activeUsers);*/
-		//$scope.realTimeChartData = generateRealTimeChartData(data);
-		//$scope.realTimeChartData = _activeUsers;
-		//$scope.circleChartData = generateCircleChartData(data);
+		$log.info("active users 1 " + data.activeUsers);		
 		$rootScope.masterActiveUserData = data;
 		$scope.activeUsers = ActiveUserData.getActiveUsersCount(data.activeUsers);
 		$scope.realTimeChartData = ActiveUserData.getActiveUsersRealTimeChartData(data.activeUsers);
@@ -58,14 +53,17 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,Ac
 	
 	socket.on('analyticsData',function(data){
 		$log.info("inside analyticsData");
+		$log.info(PageViewData.getPageViewsCount(data));
 		$rootScope.masterPageViewData = data;
 		$scope.pageViewCount = PageViewData.getPageViewsCount(data);
-		$scope.circleChartData = generateCircleChartData();
+		$scope.pageViewLabel = "Page View";		
 		$scope.browserUsingStatus = BrowserData.getRealTimeBrowserData();
 		$scope.verticalChartInputs = PageViewData.getEachPageViewsCount(data);
 	});
 	
-	
+	$scope.go = function ( hash ) {
+	  $location.hash( hash );
+	};
 	/**Sallap --Start: Method for generating the realtime json object**/
 	/*$scope.setRealTimeData(generateRealTimeData());	
 	$log.info($scope.getRealTimeData());*/

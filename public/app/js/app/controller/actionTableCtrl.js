@@ -2,7 +2,7 @@
 
 function actionTableCtrl($log,socket,$scope,$rootScope,$timeout,$location,$window){
 
-	$log.info("In actionTableCtrl");
+	/*$log.info("In actionTableCtrl");
 	if(!$scope.ruleData){
 		$scope.ruleData = $rootScope.masterData;
 		$scope.status = "Active";
@@ -29,11 +29,9 @@ function actionTableCtrl($log,socket,$scope,$rootScope,$timeout,$location,$windo
 	$scope.chatStatus = function(data){
 			return data.ruleDetails.chat;
 		};
-		$scope.offerStatus = function(data){
-			return data.ruleDetails.offer;
-		};	
-
-	
+	$scope.offerStatus = function(data){
+		return data.ruleDetails.offer;
+	};		
 
 	$scope.chat = function(clientId){
 		var url = "/chat?clientId="+clientId;
@@ -41,6 +39,8 @@ function actionTableCtrl($log,socket,$scope,$rootScope,$timeout,$location,$windo
 		$window.open(url,clientId, 'width=500, height=600');
 		
 	};
+*/
+	
 	
 }
 

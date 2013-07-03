@@ -73,6 +73,15 @@ uiDataService.service("ActiveUserData",function($log,UtilServices){
 uiDataService.service("PageViewData",function($log,UtilServices){
 	var pageViewCount = 0;
 	var homepageViewCount = 0;
+	var searchResultsPage = 0;
+	var otherPage = 0;
+	var accountPage = 0;
+	var productFurniture=0;
+	var productAnashiraOffer = 0;
+	var checkoutPageCart = 0;
+	var productElectronics = 0;
+	var productApparel = 0;
+	var checkoutProceed = 0;
 	//var pageViewCount = UtilServices.generateRandomNumber();
 	this.getPageViewsCount = function(pageViewData){
 
@@ -81,29 +90,64 @@ uiDataService.service("PageViewData",function($log,UtilServices){
 			$log.info("inside getPageViewsCount");
 			pageViewCount++;
 		}
-		return [{"count": pageViewCount,"label":"Page Views"}];
+		return pageViewCount;
 	};
 	
 	this.getEachPageViewsCount = function(pageViewData){
-		var homepageViewCountPer = 0;
+		
+		
+
 		$log.info("page pathe ---");
 		
 		if(!angular.equals(undefined,pageViewData.analyticsData.pageData) && 
 				!angular.equals(undefined,pageViewData.analyticsData.pageData.pathname)){
-
-			
-			if(angular.equals("/",pageViewData.analyticsData.pageData.pathname)){				
+			var pathName = pageViewData.analyticsData.pageData.pathname;
+			$log.info(pathName);
+				switch(pathName)
+				{
+				case "/":
+				  homepageViewCount++;					  
+				  break;
+				case "/catalogsearch/result/":
+				  searchResultsPage++;
+				  break;
+				 case "/customer/account/login/":
+				  accountPage++;
+				  break;
+				 case "/furniture.html":
+				  productFurniture++;
+				  break;
+				 case "/apparel/shoes/womens/anashria-womens-premier-leather-sandal.html":
+				  productAnashiraOffer++;
+				  break;
+				 case "/checkout/cart/":
+				  checkoutPageCart++;
+				  break;
+				 case "/electronics.html":
+				  productElectronics++;
+				  break;  
+				 case "/apparel.html":
+				  productApparel++;
+				  break;
+				  case "/checkout/onepage/":
+				  checkoutProceed++;
+				  break;
+				default:
+				  otherPage++;
+				}
+				
+			/*if(angular.equals("/",pageViewData.analyticsData.pageData.pathname)){				
 				homepageViewCount++;
 				homepageViewCountPer = homepageViewCount;
 				$log.info(homepageViewCountPer);
-			}
+			}*/
 
 		}
-		return [{"CN":"Home","PER":homepageViewCountPer},{"CN":"PDP","PER":UtilServices.generateRandomPercentage()}
-		,{"CN":"GB","PER":UtilServices.generateRandomPercentage()},{"CN":"DE","PER":UtilServices.generateRandomPercentage()}
-		,{"CN":"NL","PER":UtilServices.generateRandomPercentage()},{"CN":"CA","PER":UtilServices.generateRandomPercentage()}
-		,{"CN":"FI","PER":UtilServices.generateRandomPercentage()},{"CN":"RU","PER":UtilServices.generateRandomPercentage()}
-		,{"CN":"AU","PER":UtilServices.generateRandomPercentage()},{"CN":"IN","PER":UtilServices.generateRandomPercentage()}];
+		return [{"CN":"Home","PER":homepageViewCount},{"CN":"Search","PER":searchResultsPage}		
+		,{"CN":"Furniture","PER":productFurniture},{"CN":"Special Offer","PER":productAnashiraOffer}
+		,{"CN":"Account","PER":accountPage},{"CN":"Other","PER":otherPage}
+		,{"CN":"Cart","PER":checkoutPageCart},{"CN":"Electronics","PER":productElectronics}
+		,{"CN":"Apparel","PER":productApparel},{"CN":"Checkout","PER":checkoutProceed}];
 	};
 	
 });

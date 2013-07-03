@@ -1,32 +1,45 @@
 "use strict";
-/*var _activeUsers = [];
-var _res = [];*/
 
 function indexCntrl($log,socket,$scope,$rootScope,$timeout,$location,$window){
-
-	$log.info("In actionTableCtrl");
-	if(!$scope.ruleData){
-		$scope.ruleData = $rootScope.masterData;
-		$scope.status = "Active";
-	}
+	$log.info("In indexCtrl");
+	//$scope.noResults_ruleId = "0001";
+	//$scope.noResults_label = "No Results Found";		
 
 	socket.on('noResultsFound',function(data){				
 		$log.info("inside no results found rule");
 		$log.info(data.noResultsFound.length);
-		$rootScope.masterData = data.noResultsFound;
+		$scope.results_count = data.noResultsFound.length;						
 		$scope.ruleData = data.noResultsFound;
-		$scope.status = "Active";				
+		$scope.status = "Active";
 	});
 
 	socket.on('couponError',function(data){
 
 		$log.info("inside couponError rule");
-		$log.info(data.couponError.length);
-		$rootScope.masterData = data.couponError;
+		$log.info(data.couponError.length);		
 		$scope.ruleData = data.couponError;
 		$scope.status = "Active";		
 
 		});
+	$scope.toggleStatus = function(idIndex){
+		
+		var element = "#activityLabel" + idIndex;		
+		console.log("inside toggle status" + element);
+		if(angular.element( 'element').hasClass('label-success').toString()){
+			console.log("inside toggle status IF" + element);
+			angular.element('element').find('span').removeClass('label-success')
+				.addClass('label-warning');	
+		}
+		
+	};
+
+	/*function generateCircleChartData(data){	
+	console.log('inside generateCircleChartData');
+	console.log(data);
+
+	return [{"count":generateRandomNumber(),"label":'TBD'},
+	 {"count":generateRandomNumber(),"label":'TBD'}];
+}*/
 
 	$scope.chatStatus = function(data){
 			return data.ruleDetails.chat;
@@ -43,56 +56,20 @@ function indexCntrl($log,socket,$scope,$rootScope,$timeout,$location,$window){
 		$window.open(url,clientId, 'width=500, height=600');
 		
 	};
-	
-}
 
-function infrastructureCntrl($log,$scope,socket,$timeout,User){
-	$log.info("In infrastructureCntrl");
-	if(!User.isValidUser()){
-		User.redirectToLogin();
-	}
-	
+	$scope.offerCode = function(clientId,offer){	
+		console.log("clientId 2 --->" + clientId);	
+		socket.emit('offerCode',{offer:offer,clientId:clientId});
+	};
 
-	$scope.activeUserData = {"users":150,"data":getRandomData(150)};
-	$scope.serverData = {"users":200,"data":getRandomData(200)};
-	$scope.activeUsersCircleChart = generateActiveUsersCircleChartData();	
-	$scope.temperatureChartData = generateTemperatureStatusChartData();
-	
-	/**Start: Generate random data for temperatureChartData**/
-	$scope.updateTemperatureChartData = function(){
-		$scope.temperatureChartData = generateTemperatureStatusChartData();
-		$timeout($scope.updateTemperatureChartData,3000);
+	$scope.showModal = function(clientId){
+		console.log("inside show modal");
+		$('#myModal').modal('show');
+		console.log(clientId);
+		$scope.modalClientId = clientId;
 	};
-	//$timeout($scope.updateTemperatureChartData,3000);
-	/**End: Generate random data for temperatureChartData**/
-	
-	/**Start: Generate random data for activeUserData**/
-	$scope.updateRealTimeChartData = function(){
-		$scope.activeUserData = {"users":150,"data":getRandomData(150)};
-		$timeout($scope.updateRealTimeChartData,8000);
-	};
-	//$timeout($scope.updateRealTimeChartData,8000);
-	/**End: Generate random data for activeUserData**/
-	
-	/**Start: Generate random data for serverData**/
-	$scope.updateRealTimeServerChartData = function(){
-		$scope.serverData = {"users":200,"data":getRandomData(200)};
-		$timeout($scope.updateRealTimeServerChartData,2000);
-	};
-	//$timeout($scope.updateRealTimeServerChartData,2000);
-	/**End: Generate random data for serverData**/
-	
-	/**Start: Generate random data for activeUsersCircleChart**/
-	$scope.updateActiveUseCircleChartData = function(){
-		$scope.activeUsersCircleChart = generateActiveUsersCircleChartData();
-		$timeout($scope.updateActiveUseCircleChartData,1000);
-	};
-	//$timeout($scope.updateActiveUseCircleChartData,1000);
-	/**End: Generate random data for activeUsersCircleChart**/
-}
 
-function messageCntrl($log,$scope,$timeout){
-	$log.info("In messageCntrl");
+
 }
 
 function loginCntrl($log,$scope,$timeout,$location,$http,$rootScope){

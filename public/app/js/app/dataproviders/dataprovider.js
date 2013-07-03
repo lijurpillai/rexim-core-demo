@@ -110,6 +110,4 @@ function generateChartData(){
 }
 
 
-function generateCircleChartData(){
-	return [{"count":generateRandomNumber(),"label":'TBD'},{"count":generateRandomNumber(),"label":'TBD'}];
-}
+

@@ -1,6 +1,6 @@
 exports.chatHandler = function(socket){
 	var usernames = {};
-	console.log("chatttinngggg.....");
+	console.log("Initializing Chat handler");
 	// when the client emits 'adduser', this listens and executes
   socket.on('adduser', function(username){
     // we store the username in the socket session for this client

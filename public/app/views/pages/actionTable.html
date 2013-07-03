@@ -14,11 +14,12 @@
 						  <thead>
 							  <tr>
 								  <th>#</th>
+								  <th>Reported Time</th>
+								  <th>Rule Id</th>
+								  <th>Rule Name</th>
 								  <th>Customer Id</th>
 								  <th>Client Id</th>
-								  <th>Tracking Id</th>
-								  <th>Rule Id</th>
-								  <th>Rule Name</th>								  
+								  <th>Tracking Id</th>				  								  
 								  <th>Status</th>								  
 								  <th>Actions</th>
 							  </tr>
@@ -26,46 +27,51 @@
 						  <tbody ng-repeat="data in ruleData">
 							<tr>
 								<td>{{$index+1}}</td>
+								<td class="center">{{data.timeStamp}}</td>
+								<td class="center">{{data.ruleId}}</td>
+								<td class="center">{{data.ruleDetails.ruleType}}</td>
 								<td class="center">{{data.custId}}</td>
 								<td class="center">{{data.clientId}}</td>
 								<td class="center">{{data.trackingId}}</td>
-								<td class="center">{{data.ruleId}}</td>
-								<td class="center">{{data.ruleDetails.ruleType}}</td>					
-								<td class="center">
-									<span class="label label-success">{{status}}</span>
+													
+								<td id = "activityLabel{{$index}}" class="center">
+									<span class="label label-success">{{status}}</span>				
 								</td>
 								<td class="center">
 									<a class="btn btn-success" href="" ng-show = "chatStatus(data)" ng-click="chat(data.clientId)">
 										<i class="halflings-icon zoom-in halflings-icon" ></i>  
 									</a>
-									<a class="btn btn-info" ng-show = "offerStatus(data)" href="#">
+									<a class="btn btn-info" href="" ng-show = "offerStatus(data)" ng-click=
+									"showModal(data.clientId)" >
 										<i class="halflings-icon edit halflings-icon"></i>  
 									</a>
-									<a class="btn btn-danger" ng-show = {{true}} href="#">
+									<a class="btn btn-danger" ng-show = {{true}} href="" 
+									ng-click="toggleStatus({{$index}})" >
 										<i class="halflings-icon trash halflings-icon"></i> 
 									</a>
 								</td>
 							</tr>
 							
-						</tbody>
-						<!--tbody ng-repeat="data in pymtErrorData">
-				        	<tr>
-				        		<td >{{$index+1}}</td>
-				        		<td >{{data.customerId}}</td>
-				        		<td >{{data.clientId}}</td>
-				        		<td style = "text-transform: uppercase" >{{data.errorType}}</td>
-				        		<td > 
-				        			<div class="btn-group">
-									  <button class="btn btn-primary" ng-click="chat(data.clientId)">
-									  	Chat</button>
-									  <button class="btn btn-success" ng-click="showModal(data.clientId)">Promo Code</button>					  
-									</div>
-				        		</td>
-				        	</tr>
-				        </tbody-->
+						</tbody>						
 					  </table>            
 					</div>
 				</div><!--/span-->
 			
 			</div><!--/row-->
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Enter Offer Code</h3>
+  </div>
+  <div class="modal-body">    
+    <input type="text" ng-model = "offer.offerCode" placeholder="Enter Offer Code">
+    <input type="hidden" ng-model = "modalClientId" placeholder="Enter Offer Code">
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true" 
+    ng-click="offerCode(modalClientId,offer.offerCode)">Submit</button>
+  </div>
 </div>

@@ -5,9 +5,15 @@ exports.processRulesData = function(socket,rulesData){
 	var clientId = socket.id;	
 	
 	socket.on('noResultsFound',function(data){	
-  			  
-  			  data.clientId = clientId;
-  			  console.log("Rules Data ---->");  			  
+  			  var currentdate = new Date();
+          var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+          data.timeStamp = datetime;      
+  			  data.clientId = clientId;  			  			  
   			  rulesData.push(data);
   			  console.log(rulesData);
   			  IO.sockets.emit('noResultsFound', { noResultsFound: rulesData });

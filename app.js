@@ -25,6 +25,7 @@ var socketConfig = './routes/socket/socketconfig.js';
 var sendAnalyticsData = require('./routes/analytics/analyticsData.js');
 var sendRuleData = require('./routes/rules/rulesData.js');
 var owaChatHandler = require('./routes/chat/chat.js');
+var owaOfferHandler = require('./routes/offer/offerProcessor.js');
 
 var rulesData = []; // list of rule data to be sent to dashboard
 
@@ -90,6 +91,7 @@ IO.sockets.on('connection', function (socket){
   sendAnalyticsData.processAnalyticsData(socket); // send analytics data
   sendRuleData.processRulesData(socket,rulesData);
   owaChatHandler.chatHandler(socket);
+  owaOfferHandler.offerHandler(socket);
 
   socket.on('disconnect', function () {
     console.log("Socket Disconecting........." + Object.keys(IO.connected).length);

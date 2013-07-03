@@ -48,4 +48,13 @@ function mainMenuCntrl($log,$scope,$location){
 			return "";
 		}
 	};
+
+	$scope.getRuleConfigClass = function(){
+		if(angular.equals("/rule_config",$location.absUrl().split('#')[1])){
+			return "active";
+		}else{
+			return "";
+		}
+	};
+
 }

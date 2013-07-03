@@ -13,7 +13,7 @@ verticalchartDirective.directive('verticalchart',function($log){
 						var percent = angular.element(this).find('.value span').html();
 						if(!angular.equals(null,percent) && !angular.equals("",percent.trim())){
 							//$log.info("percent: "+percent);
-							angular.element(this).find('.value').animate({height:percent}, 800, function() {    
+							angular.element(this).find('.value').animate({height:percent}, 0, function() {    
 								angular.element(this).find('span').fadeIn();
 							});
 						}

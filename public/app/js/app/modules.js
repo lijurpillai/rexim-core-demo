@@ -18,6 +18,7 @@ myModule.
 				when('/dashboard', {templateUrl: 'views/pages/dashboard.html', controller: dashboardCntrl}).
 				when('/dashboard_realtime', {templateUrl: 'views/pages/dashboard_realtime.html', controller: dashboardCntrl}).
 				when('/dashboard_history', {templateUrl: 'views/pages/dashboard_history.html', controller: dashboardHistoryCntrl}).
+				when('/rule_config', {templateUrl: 'views/pages/rule_config.html'}).
 				when('/actiontable', {templateUrl: 'views/pages/actionTable.html'}).				
 				otherwise({redirectTo:'/login'});
 }]);

@@ -1,7 +1,6 @@
 <!-- start: Content -->
 <div id="content" class="span11">
-	<div class="row-fluid">
-		
+	<div class="row-fluid">		
 	</div>
 	<div class="row-fluid hideInIE8">
 		<div class="span12">
@@ -12,25 +11,27 @@
 						<div class="circleStat">
                        		<input type="text" class="whiteCircle" value="{{actuser.count}}"/>
 						</div>
-						<div class="footer" ng-bind="actuser.label"></div>
+						<div class="footer" >Active Users</div>
                    	</div>
 				</div>
-				<div class="span2" onTablet="span4" onDesktop="span2" ng-repeat="pageview in pageViewCount">
-                   	<div id="pageView{{$index}}" class="circleStatsItemBox" circlechart="pageview">
+				<div class="span2" onTablet="span4" onDesktop="span2"  >
+                   	<div id="pageView" class="circleStatsItemBox" circlechart="pageview">
 						<div class="header" >There are </div>
 						<div class="circleStat">
-                       		<input type="text" class="whiteCircle" value="{{pageview.count}}"/>
+                       		<input type="text" class="whiteCircle" value="{{pageViewCount}}"/>
 						</div>
-						<div class="footer" ng-bind="pageview.label"></div>
+						<div class="footer" >Page Views</div>
                    	</div>
 				</div>
-				<div class="span2" onTablet="span4" onDesktop="span2" ng-repeat="chartData in circleChartData">
-                   	<div id="circleChart{{$index}}" class="circleStatsItemBox" circlechart="chartData">
-						<div class="header" ng-bind="chartData.label"></div>
+				<div class="span2" onTablet="span4" onDesktop="span2" >
+                   	<div id="pageViewError" class="circleStatsItemBox" circlechart="resultsError">
+						<div class="header" ng-init = "noResults_ruleId = '0001'">Rule Id: {{noResults_ruleId}}</div>
 						<div class="circleStat">
-                       		<input type="text" class="whiteCircle" value="{{chartData.count}}"/>
+                       		<input type="text" class="whiteCircle" value="{{results_count}}"/>
+						</div>						
+						<div class="footer" ng-init = "noResults_label = 'No Results Found'">
+							<a href="#/actiontable">{{noResults_label}}</a>
 						</div>
-						<div class="footer" ng-bind="chartData.label"></div>
                    	</div>
 				</div>
             </div>
