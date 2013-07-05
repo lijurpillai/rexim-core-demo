@@ -46,6 +46,17 @@
 						</div>
                    	</div>
 				</div>
+				<div class="span2" onTablet="span4" onDesktop="span2" >
+                   	<div id="a2cAlert" class="circleStatsItemBox" circlechart="a2cAlert">
+						<div class="header" ng-init = "a2cAlert_Id = '0003'">Rule Id: {{a2cAlert_Id}}</div>
+						<div class="circleStat">
+                       		<input type="text" class="whiteCircle" value="{{a2c_Count}}"/>
+						</div>						
+						<div class="footer" ng-init = "a2cAlert_Label = 'A2C Above 3000'">
+							<a style="color:#FFFFFF" href="#/actiontable">{{a2cAlert_Label}}</a>
+						</div>
+                   	</div>
+				</div>
             </div>
 		</div>
 	</div>

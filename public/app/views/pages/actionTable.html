@@ -2,7 +2,7 @@
 	<div class="row-fluid">		
 				<div class="box span12">
 					<div class="box-header" data-original-title>
-						<h2><i class="halflings-icon user"></i><span class="break"></span>Members</h2>
+						<h2><i class="halflings-icon user"></i><span class="break"></span><b>Activities</b></h2>
 						<div class="box-icon">
 							<a href="#" class="btn-setting"><i class="halflings-icon wrench"></i></a>
 							<a href="#" class="btn-minimize"><i class="halflings-icon chevron-up"></i></a>
@@ -39,11 +39,13 @@
 								</td>
 								<td class="center">
 									<a class="btn btn-success" href="" ng-show = "chatStatus(data)" ng-click="chat(data.clientId)">
-										<i class="halflings-icon zoom-in halflings-icon" ></i>  
+										<!--i class="halflings-icon zoom-in halflings-icon" ></i-->
+										<i>Chat</i>  
 									</a>
 									<a class="btn btn-info" href="" ng-show = "offerStatus(data)" ng-click=
 									"showModal(data.clientId)" >
-										<i class="halflings-icon edit halflings-icon"></i>  
+										<!--i class="halflings-icon edit halflings-icon"></i-->  
+										<i>Push</i>  
 									</a>
 									<a class="btn btn-danger" ng-show = {{true}} href="" 
 									ng-click="toggleStatus({{$index}})" >

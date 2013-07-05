@@ -6,7 +6,8 @@ function indexCntrl($log,socket,$scope,$rootScope,$timeout,$location,$window){
 	socket.on('0001',function(data){				
 		$log.info("inside no results found rule");
 		$log.info(data.noResultsFound.length);
-		$scope.results_count = data.noResultsFound.length;						
+		$scope.results_count=getCount('0001',data.noResultsFound);
+		//$scope.results_count = data.noResultsFound.length;						
 		$scope.ruleData = data.noResultsFound;
 		$scope.status = "Active";
 	});
@@ -15,7 +16,8 @@ function indexCntrl($log,socket,$scope,$rootScope,$timeout,$location,$window){
 
 		$log.info("inside couponError rule");
 		$log.info(data.couponError.length);	
-		$scope.errorCount = data.couponError.length;	
+		//$scope.errorCount = data.couponError.length;
+		$scope.errorCount = getCount('0002',data.couponError);	
 		$scope.ruleData = data.couponError;
 		$scope.status = "Active";		
 
@@ -23,9 +25,10 @@ function indexCntrl($log,socket,$scope,$rootScope,$timeout,$location,$window){
 	socket.on('0003',function(data){
 
 		$log.info("inside a2c > 3000 alert");
-		$log.info(data.couponError.length);	
-		$scope.errorCount = data.couponError.length;	
-		$scope.ruleData = data.couponError;
+		$log.info(data.a2cAlert.length);	
+		//$scope.errorCount = data.a2cAlert.length;	
+		$scope.a2c_Count = getCount('0003',data.a2cAlert);	
+		$scope.ruleData = data.a2cAlert;
 		$scope.status = "Active";		
 
 		});
@@ -40,6 +43,17 @@ function indexCntrl($log,socket,$scope,$rootScope,$timeout,$location,$window){
 		}
 		
 	};
+
+	function getCount(ruleId,data){
+		var count = 0;
+		for (var i = 0; i < data.length; i++) {			
+			if(data[i].ruleId == ruleId){	
+				++count;
+			}			
+		};
+		console.log("rule count" + count);
+		return count;
+	}
 
 	/*function generateCircleChartData(data){	
 	console.log('inside generateCircleChartData');

@@ -94,6 +94,8 @@ jQ(function(){
             var ruleData = new RuleData("SuperStore","apiKEY" , "1.0",ruleId );
             ruleData.ruleDetails = new RuleDetails(ruleId);
             ruleData.ruleDetails.autoResponseOffer = true;
+            ruleData.ruleDetails.chat = true;
+            ruleData.ruleDetails.offer = false;
             socket.emit('0003',ruleData);
         }
 

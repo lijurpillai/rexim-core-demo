@@ -38,7 +38,7 @@ exports.processRulesData = function(socket,rulesData){
           };         
           rulesData.push(data);
           console.log(rulesData);
-          IO.sockets.emit('0003', { couponError: rulesData }); // auto response of offer code
+          IO.sockets.emit('0003', { a2cAlert: rulesData }); // auto response of offer code
         });
 
 	}
