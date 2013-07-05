@@ -59,6 +59,9 @@ uiDataService.service("ActiveUserData",function($log,UtilServices){
 			userCount = 0;
 		}
 		activeUsersCount = userCount;
+		if(userCount>=0){
+			userCount = userCount-1;
+		}
 		//return [{"count": userCount,"label":"Active Users"},{"count":newUsers,"label":'New Users'},{"count":usersLogOut,"label":'User LoggedOut'}];
 		return [{"count": userCount,"label":"Active Users"}];
 	};
@@ -95,9 +98,7 @@ uiDataService.service("PageViewData",function($log,UtilServices){
 	
 	this.getEachPageViewsCount = function(pageViewData){
 		
-		
-
-		$log.info("page pathe ---");
+		$log.info("page path ---");
 		
 		if(!angular.equals(undefined,pageViewData.analyticsData.pageData) && 
 				!angular.equals(undefined,pageViewData.analyticsData.pageData.pathname)){
@@ -136,12 +137,6 @@ uiDataService.service("PageViewData",function($log,UtilServices){
 				  otherPage++;
 				}
 				
-			/*if(angular.equals("/",pageViewData.analyticsData.pageData.pathname)){				
-				homepageViewCount++;
-				homepageViewCountPer = homepageViewCount;
-				$log.info(homepageViewCountPer);
-			}*/
-
 		}
 		return [{"CN":"Home","PER":homepageViewCount},{"CN":"Search","PER":searchResultsPage}		
 		,{"CN":"Furniture","PER":productFurniture},{"CN":"Special Offer","PER":productAnashiraOffer}

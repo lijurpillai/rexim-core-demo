@@ -43,7 +43,7 @@ jQ(function(){
             ruleData.ruleDetails.chat = true;
             ruleData.ruleDetails.offer = true;
     		console.log(ruleData );
-    		socket.emit('noResultsFound',ruleData);
+    		socket.emit('0001',ruleData);
        	}   		
     }
     /** Rule 0001 ends **/
@@ -71,12 +71,34 @@ jQ(function(){
             ruleData.ruleDetails.chat = true;
             ruleData.ruleDetails.offer = false;
      		console.log(ruleData);
-     		socket.emit('couponError',ruleData);
+     		socket.emit('0002',ruleData);
      		
      	}
      }
 
-     
+     /** Rule 0003 - A2C Auto Response over 2000 Rs
+    **  In "catalogsearch/result/" page when ".note-msg" == "Your search returns no results."
+    **  then no results found for product "?q="
+    **/
+
+    if(window.location.pathname == "/checkout/cart/")
+    {   var ruleId = "0003";
+        var triggerPrice = 3000;
+        console.log("inside rule " + ruleId);
+        // getting subtotal element
+        var subtotalElem = jQ('#shopping-cart-totals-table tbody span.price').text(); 
+        // remove ',' and convert to  int.  
+        var subtotal = parseFloat(subtotalElem.substring(2).replace(/\,/g,''));
+        console.log(subtotal);
+        if(subtotal>triggerPrice){
+            var ruleData = new RuleData("SuperStore","apiKEY" , "1.0",ruleId );
+            ruleData.ruleDetails = new RuleDetails(ruleId);
+            ruleData.ruleDetails.autoResponseOffer = true;
+            socket.emit('0003',ruleData);
+        }
+
+    }
+    /** Rule 003 Ends**/
 
 
 	//console.log(jQ('h2[class = "product-name"]').text(0));
@@ -102,6 +124,8 @@ jQ(function(){
     		 return {rtype :"No Results Found" , rdesc : "Prod search returns no result"};
     		case "0002":
     		 return {rtype :"Coupon Error" , rdesc : "Coupon error with subtotal greter than 2000"};
+            case "0003":
+             return {rtype :"A2C auto response" , rdesc : "A2C for amount greater than 3000"};
     		default: return {rtype :"" , rdesc : ""};
     	}
     }

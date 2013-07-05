@@ -7,11 +7,11 @@ jQ(function(){
 	//jQ('#offerCode').dialog({autoOpen: true});
 
 	jQ( "#offerCode" )
-	.dialog({autoOpen: false,show: {effect: "fade",duration: 1000},
+	.dialog({autoOpen: false,show: {effect: "slide",duration: 1000},
 	hide: {effect: "puff",duration: 1000}
     },{ title: "Offer Code" },
 		{ position: { my: "right ", at: "bottom", of: ".footer-container" } },
-			{ buttons: [ { text: "Ok", click: function() { jQ( this ).dialog( "close" ); } } ] 
+			{ buttons: [ { text: "OK", click: function() { jQ( this ).dialog( "close" ); } } ] 
 	})
 
 	socket.on('offerCode',function(data){  // data coming from sever to the specific instance.....

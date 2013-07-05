@@ -1,4 +1,5 @@
 "use strict";
+var pageCount = 0;
 
 // sallap function dashboardCntrl($log,$scope,$timeout,$location,User,ActiveUserData,PageViewData,BrowserData){
 function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,ActiveUserData,PageViewData,BrowserData){
@@ -12,7 +13,7 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,Ac
 		angular.element('#widgets-area-button').css({display: 'block'});
 		angular.element('#sidebar-left').css({display: 'block'});
 	}	
-	
+	// Setting master data in rootscope - Active Users
 	if($rootScope.masterActiveUserData){
 		if(!$scope.activeUsers){
 			$scope.activeUsers =ActiveUserData.
@@ -23,11 +24,15 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,Ac
 						getActiveUsersRealTimeChartData($rootScope.masterActiveUserData.activeUsers);		
 		}
 	}
+	// Setting master data in rootscope - PageView
 	if($rootScope.masterPageViewData){
 		
 		if(!$scope.pageViewCount){
-			$scope.pageViewCount = PageViewData.getPageViewsCount($rootScope.masterPageViewData);			
+			//$scope.pageViewCount = PageViewData.getPageViewsCount($rootScope.masterPageViewData);			
+			$scope.pageViewCount = pageCount++;
 			$scope.pageViewLabel = "Page View";
+			$scope.verticalChartInputs = PageViewData.getEachPageViewsCount($rootScope.masterPageViewData);
+			$scope.browserUsingStatus = BrowserData.getRealTimeBrowserData();
 		}		
 	}
 	
@@ -43,7 +48,7 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,Ac
 	/**End: Generate random data for loggedInTimer*/
 	
 	socket.on('activeUsers',function(data){				
-		$log.info("active users 1 " + data.activeUsers);		
+		$log.info("active users 1 " + data.activeUsers);					
 		$rootScope.masterActiveUserData = data;
 		$scope.activeUsers = ActiveUserData.getActiveUsersCount(data.activeUsers);
 		$scope.realTimeChartData = ActiveUserData.getActiveUsersRealTimeChartData(data.activeUsers);
@@ -52,10 +57,10 @@ function dashboardCntrl($log,$scope,$timeout,$location,$rootScope,socket,User,Ac
 	});
 	
 	socket.on('analyticsData',function(data){
-		$log.info("inside analyticsData");
-		$log.info(PageViewData.getPageViewsCount(data));
+		$log.info("inside analyticsData");		
 		$rootScope.masterPageViewData = data;
-		$scope.pageViewCount = PageViewData.getPageViewsCount(data);
+		$scope.pageViewCount = ++pageCount;	
+		//$scope.pageViewCount = PageViewData.getPageViewsCount(data);		
 		$scope.pageViewLabel = "Page View";		
 		$scope.browserUsingStatus = BrowserData.getRealTimeBrowserData();
 		$scope.verticalChartInputs = PageViewData.getEachPageViewsCount(data);

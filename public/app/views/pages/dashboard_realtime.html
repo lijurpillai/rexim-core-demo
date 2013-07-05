@@ -1,4 +1,5 @@
 <!-- start: Content -->
+
 <div id="content" class="span11">
 	<div class="row-fluid">		
 	</div>
@@ -30,7 +31,18 @@
                        		<input type="text" class="whiteCircle" value="{{results_count}}"/>
 						</div>						
 						<div class="footer" ng-init = "noResults_label = 'No Results Found'">
-							<a href="#/actiontable">{{noResults_label}}</a>
+							<a style="color:#FFFFFF" href="#/actiontable">{{noResults_label}}</a>
+						</div>
+                   	</div>
+				</div>
+				<div class="span2" onTablet="span4" onDesktop="span2" >
+                   	<div id="couponError" class="circleStatsItemBox" circlechart="couponError">
+						<div class="header" ng-init = "couponError_Id = '0002'">Rule Id: {{couponError_Id}}</div>
+						<div class="circleStat">
+                       		<input type="text" class="whiteCircle" value="{{errorCount}}"/>
+						</div>						
+						<div class="footer" ng-init = "couponError_Label = 'Coupon Error'">
+							<a style="color:#FFFFFF" href="#/actiontable">{{couponError_Label}}</a>
 						</div>
                    	</div>
 				</div>

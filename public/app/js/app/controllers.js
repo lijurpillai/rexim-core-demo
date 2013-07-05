@@ -1,11 +1,9 @@
 "use strict";
 
 function indexCntrl($log,socket,$scope,$rootScope,$timeout,$location,$window){
-	$log.info("In indexCtrl");
-	//$scope.noResults_ruleId = "0001";
-	//$scope.noResults_label = "No Results Found";		
+	$log.info("In indexCtrl");		
 
-	socket.on('noResultsFound',function(data){				
+	socket.on('0001',function(data){				
 		$log.info("inside no results found rule");
 		$log.info(data.noResultsFound.length);
 		$scope.results_count = data.noResultsFound.length;						
@@ -13,10 +11,20 @@ function indexCntrl($log,socket,$scope,$rootScope,$timeout,$location,$window){
 		$scope.status = "Active";
 	});
 
-	socket.on('couponError',function(data){
+	socket.on('0002',function(data){
 
 		$log.info("inside couponError rule");
-		$log.info(data.couponError.length);		
+		$log.info(data.couponError.length);	
+		$scope.errorCount = data.couponError.length;	
+		$scope.ruleData = data.couponError;
+		$scope.status = "Active";		
+
+		});
+	socket.on('0003',function(data){
+
+		$log.info("inside a2c > 3000 alert");
+		$log.info(data.couponError.length);	
+		$scope.errorCount = data.couponError.length;	
 		$scope.ruleData = data.couponError;
 		$scope.status = "Active";		
 
